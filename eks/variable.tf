@@ -5,7 +5,7 @@ data "terraform_remote_state" "vpc" {
   config = {
     region = "ap-northeast-2"
     bucket = "terraform-workshop-seoul"
-    key    = "vpc-demo.tfstate"
+    key    = "vpc.tfstate"
   }
 }
 
@@ -14,7 +14,7 @@ variable "region" {
 }
 
 variable "name" {
-  default = "seoul-dev-demo-eks"
+  default = "workshop-eks"
 }
 
 variable "kubernetes_version" {
@@ -23,7 +23,7 @@ variable "kubernetes_version" {
 
 variable "allow_ip_address" {
   default = [
-    "10.10.1.0/24", # bastion
+    "10.15.1.0/24", # bastion
   ]
 }
 
@@ -89,9 +89,6 @@ variable "launch_efs_enable" {
 
 variable "buckets" {
   default = [
-    "argo",
-    "harbor",
-    "vault",
   ]
 }
 
@@ -101,21 +98,16 @@ data "aws_caller_identity" "current" {
 locals {
   map_roles = [
     {
-      rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/seoul-dev-demo-bastion"
+      rolearn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/workshop-bastion"
       username = "iam-role-bastion"
       group    = "system:masters"
     },
   ]
   map_users = [
     {
-      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/jungyoul.yu"
-      username = "jungyoul.yu"
+      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/workshop"
+      username = "workshop"
       group    = "system:masters"
-    },
-    {
-      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/developer"
-      username = "developer"
-      group    = ""
     },
   ]
 }
