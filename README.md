@@ -22,7 +22,7 @@ aws dynamodb create-table \
 ## clone
 
 ```bash
-git clone https://github.com/mzcdev/terraform-env-workshop
+git clone https://github.com/nalbam/terraform-env-workshop
 ```
 
 ## usage

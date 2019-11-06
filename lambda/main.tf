@@ -29,9 +29,12 @@ module "lambda" {
 
   s3_bucket = var.s3_bucket
   s3_source = "lambda.zip"
-  s3_key    = "lambda/${var.name}/${var.name}.zip"
+  s3_key    = "lambda/${var.stage}-${var.name}-${random_pet.deploy.id}.zip"
 
   env_vars = {
     PROFILE = var.stage
   }
+}
+
+resource "random_pet" "deploy" {
 }
