@@ -22,23 +22,39 @@ aws dynamodb create-table \
 ## clone
 
 ```bash
-git clone https://github.com/nalbam/terraform-env-workshop
+git clone https://github.com/mzcdev/terraform-env-workshop
 ```
 
 ## usage
 
+### vpc
+
 ```bash
-# create vpc
 cd terraform-env-workshop/vpc
 
 terraform init
 terraform plan
 terraform apply
+```
 
-# c reate eks
+### eks
+
+```bash
 cd terraform-env-workshop/eks
 
 terraform init
 terraform plan
 terraform apply
+```
+
+### lambda api
+
+```bash
+cd terraform-env-workshop/lambda
+
+terraform init
+terraform plan
+terraform apply
+
+curl -sL -X POST -d "{\"data\":\"ok\"}" ${invoke_url}/demo | jq .
 ```
