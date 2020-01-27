@@ -3,7 +3,8 @@ resource "aws_security_group" "this" {
   name        = var.name
   description = "security group for ${var.name}"
 
-  vpc_id = var.vpc_id
+  # vpc_id = var.vpc_id
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 
   egress {
     from_port = "0"
