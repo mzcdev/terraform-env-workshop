@@ -6,7 +6,7 @@ data "aws_route53_zone" "this" {
 # https://github.com/terraform-providers/terraform-provider-aws/issues/2195
 resource "aws_api_gateway_domain_name" "default" {
   domain_name     = var.domain_name
-  certificate_arn = aws_acm_certificate.cert.arn
+  certificate_arn = module.domain.certificate_arn
 }
 
 resource "aws_api_gateway_base_path_mapping" "default" {
@@ -16,7 +16,7 @@ resource "aws_api_gateway_base_path_mapping" "default" {
 }
 
 resource "aws_route53_record" "default" {
-  zone_id = data.aws_route53_zone.this.id
+  zone_id = module.domain.zone_id
 
   name = var.domain_name
   type = "A"

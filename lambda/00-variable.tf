@@ -90,5 +90,5 @@ variable "domain_root" {
 variable "domain_name" {
   description = ""
   type        = string
-  default     = "demo-api.workshop.mzdev.be"
+  default     = "demo-api-workshop.mzdev.be"
 }
