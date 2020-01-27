@@ -1,4 +1,3 @@
-# IAM for lambda
 
 # https://docs.aws.amazon.com/ko_kr/lambda/latest/dg/policy-templates.html
 

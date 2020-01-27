@@ -1,4 +1,3 @@
-# Lambda Function
 
 resource "aws_s3_bucket_object" "default" {
   bucket = var.s3_bucket

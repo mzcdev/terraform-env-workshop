@@ -44,19 +44,19 @@ variable "timeout" {
 variable "s3_bucket" {
   description = "The S3 bucket location containing the function's deployment package."
   type        = string
-  default     = ""
+  default     = "terraform-workshop-seoul"
 }
 
 variable "s3_source" {
   description = "The S3 source location containing the function's deployment package."
   type        = string
-  default     = ""
+  default     = "package/lambda.zip"
 }
 
 variable "s3_key" {
   description = "The S3 key of an object containing the function's deployment package."
   type        = string
-  default     = ""
+  default     = "package/lambda.zip"
 }
 
 variable "env_vars" {
@@ -81,14 +81,14 @@ variable "http_methods" {
   ]
 }
 
-variable "root_domain" {
+variable "domain_root" {
   description = ""
   type        = string
-  default     = ""
+  default     = "mzdev.be"
 }
 
-variable "this_domain" {
+variable "domain_name" {
   description = ""
   type        = string
-  default     = ""
+  default     = "demo-api.workshop.mzdev.be"
 }
