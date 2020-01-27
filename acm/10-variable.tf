@@ -5,8 +5,14 @@ variable "region" {
   default     = "us-east-1"
 }
 
-variable "domain" {
-  description = "The Hosted Zone name of the desired Hosted Zone."
+variable "domain_root" {
+  description = ""
   type        = string
   default     = "mzdev.be"
+}
+
+variable "domain_name" {
+  description = ""
+  type        = string
+  default     = "demo-api-workshop.mzdev.be"
 }
