@@ -1,9 +1,4 @@
 
-data "aws_route53_zone" "this" {
-  name = var.domain_root
-}
-
-# https://github.com/terraform-providers/terraform-provider-aws/issues/2195
 resource "aws_api_gateway_domain_name" "default" {
   domain_name     = var.domain_name
   certificate_arn = module.domain.certificate_arn
