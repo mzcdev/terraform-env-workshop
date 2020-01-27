@@ -1,4 +1,13 @@
 
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+  config = {
+    region = "ap-northeast-2"
+    bucket = "terraform-workshop-seoul"
+    key    = "vpc-demo.tfstate"
+  }
+}
+
 data "aws_ami" "this" {
   most_recent = true
 
@@ -22,5 +31,13 @@ data "aws_ami" "this" {
   filter {
     name   = "name"
     values = ["amzn-ami-hvm-*"]
+  }
+}
+
+data "template_file" "setup" {
+  template = file("templates/setup.sh")
+
+  vars = {
+    HOSTNAME = var.name
   }
 }

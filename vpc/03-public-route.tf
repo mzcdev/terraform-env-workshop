@@ -1,6 +1,6 @@
 
 resource "aws_route_table" "public" {
-  count = count(var.public_subnets)
+  count = length(var.public_subnets)
 
   vpc_id = aws_vpc.this.id
 
@@ -10,7 +10,7 @@ resource "aws_route_table" "public" {
 }
 
 resource "aws_route" "public" {
-  count = count(var.public_subnets)
+  count = length(var.public_subnets)
 
   route_table_id         = aws_route_table.public[count.index].id
   destination_cidr_block = "0.0.0.0/0"
