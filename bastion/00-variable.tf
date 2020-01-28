@@ -64,7 +64,7 @@ variable "volume_size" {
 variable "key_name" {
   description = "키페어 이름을 입력 합니다."
   type        = string
-  default     = "bastion"
+  default     = "nalbam-seoul"
 }
 
 # variable "user_data" {

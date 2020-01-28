@@ -1,9 +1,11 @@
 
 resource "aws_launch_template" "worker" {
-  name_prefix   = "${var.name}-worker-"
+  name_prefix = "${var.name}-worker-"
+
   image_id      = var.ami_id != "" ? var.ami_id : data.aws_ami.worker.id
   instance_type = var.instance_type
-  user_data     = base64encode(var.user_data)
+
+  user_data = base64encode(local.user_data)
 
   key_name = var.key_path != "" ? var.name : var.key_name
 
