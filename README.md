@@ -4,8 +4,8 @@
 
 ```bash
 # variable
-REGION=ap-northeast-2
-BUCKET=terraform-workshop-seoul
+export REGION="ap-northeast-2"
+export BUCKET="terraform-workshop-seoul"
 
 # create s3 bucket
 aws s3 mb s3://${BUCKET} --region ${REGION}
@@ -22,15 +22,37 @@ aws dynamodb create-table \
 ## clone
 
 ```bash
-git clone https://github.com/nalbam/terraform-env-workshop
+git clone https://github.com/mzcdev/terraform-env-workshop
 ```
 
 ## usage
+
+### lambda api
+
+```bash
+cd terraform-env-workshop/lambda
+
+terraform init
+terraform plan
+terraform apply
+
+curl -sL -X POST -d "{\"data\":\"ok\"}" ${invoke_url}/demo | jq .
+```
 
 ### vpc
 
 ```bash
 cd terraform-env-workshop/vpc
+
+terraform init
+terraform plan
+terraform apply
+```
+
+### bastion
+
+```bash
+cd terraform-env-workshop/bastion
 
 terraform init
 terraform plan
@@ -45,16 +67,4 @@ cd terraform-env-workshop/eks
 terraform init
 terraform plan
 terraform apply
-```
-
-### lambda api
-
-```bash
-cd terraform-env-workshop/lambda
-
-terraform init
-terraform plan
-terraform apply
-
-curl -sL -X POST -d "{\"data\":\"ok\"}" ${invoke_url}/demo | jq .
 ```
