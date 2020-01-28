@@ -81,7 +81,7 @@ variable "http_methods" {
   ]
 }
 
-variable "domain_root" {
+variable "root_domain" {
   description = "Route53 에 등록된 도메인 명"
   type        = string
   default     = "mzdev.be"

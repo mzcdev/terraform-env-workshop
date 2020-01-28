@@ -2,7 +2,7 @@
 module "domain" {
   source = "../acm"
 
-  domain_root = var.domain_root
+  root_domain = var.root_domain
   domain_name = var.domain_name
 
   acm_certificate = true
