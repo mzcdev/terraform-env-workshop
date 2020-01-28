@@ -21,9 +21,9 @@ resource "aws_launch_template" "worker" {
     }
   }
 
-  # iam_instance_profile {
-  #   name = aws_iam_instance_profile.worker.name
-  # }
+  iam_instance_profile {
+    name = aws_iam_instance_profile.worker.name
+  }
 
   monitoring {
     enabled = var.enable_monitoring

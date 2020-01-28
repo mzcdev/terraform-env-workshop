@@ -1,80 +1,38 @@
 
 variable "region" {
-  description = "생성될 리전."
+  description = "생성될 리전"
   type        = string
   default     = "ap-northeast-2"
 }
 
 variable "name" {
-  description = "클러스터 이름."
+  description = "클러스터 이름"
   type        = string
   default     = "eks-demo"
 }
 
 variable "kubernetes_version" {
-  description = "쿠버네티스 버전."
+  description = "쿠버네티스 버전"
   type        = string
   default     = "1.14"
 }
 
 variable "allow_ip_address" {
-  description = "List of IP Address to permit access"
+  description = "접속 허용 IP 목록"
   type        = list(string)
   default     = []
 }
 
-# variable "workers" {
-#   description = "Additional IAM roles to add to the aws-auth configmap."
-#   type        = list(string)
-#   default     = [
-#     "arn:aws:iam::${local.account_id}:role/${var.name}-worker",
-#   ]
-# }
-
-# variable "map_roles" {
-#   description = "Additional IAM roles to add to the aws-auth configmap."
-#   type = list(object({
-#     rolearn  = string
-#     username = string
-#     groups   = list(string)
-#   }))
-#   default = [
-#     {
-#       rolearn  = "arn:aws:iam::${local.account_id}:role/bastion"
-#       username = "iam-role-bastion"
-#       groups   = ["system:masters"]
-#     },
-#   ]
-# }
-
-# variable "map_users" {
-#   description = "Additional IAM users to add to the aws-auth configmap."
-#   type = list(object({
-#     userarn  = string
-#     username = string
-#     groups   = list(string)
-#   }))
-#   default = [
-#     {
-#       userarn  = "arn:aws:iam::${local.account_id}:user/jungyoul.yu"
-#       username = "jungyoul.yu"
-#       groups   = ["system:masters"]
-#     },
-#     {
-#       userarn  = "arn:aws:iam::${local.account_id}:user/developer"
-#       username = "developer"
-#       groups   = [""]
-#     },
-#   ]
-# }
-
 variable "instance_type" {
-  default = "m5.large"
+  description = "워커 노드 인스턴스 타입"
+  type        = string
+  default     = "m5.large"
 }
 
 variable "mixed_instances" {
-  type    = list(string)
-  default = ["c5.large", "r5.large"]
+  description = "워커 노드 추가 인스턴스 타입 목록"
+  type        = list(string)
+  default     = ["c5.large", "r5.large"]
 }
 
 variable "enable_monitoring" {
