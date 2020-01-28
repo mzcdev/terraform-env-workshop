@@ -8,9 +8,16 @@ resource "aws_subnet" "private" {
 
   cidr_block = var.private_subnets[count.index].cidr
 
-  tags = {
-    Name = format("%s-private-%s", var.name, count.index)
-  }
+  tags = merge(
+    {
+      Name = format(
+        "%s-private-%s",
+        var.name,
+        element(split("", var.private_subnets[count.index].zone), length(var.private_subnets[count.index].zone) - 1)
+      )
+    },
+    var.tags,
+  )
 }
 
 resource "aws_route_table_association" "private" {

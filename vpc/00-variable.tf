@@ -61,5 +61,8 @@ variable "private_subnets" {
   ]
 }
 
-data "aws_availability_zones" "azs" {
+variable "tags" {
+  default = {
+    "kubernetes.io/cluster/eks-demo" = "shared"
+  }
 }

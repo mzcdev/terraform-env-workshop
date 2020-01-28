@@ -4,9 +4,16 @@ resource "aws_route_table" "public" {
 
   vpc_id = aws_vpc.this.id
 
-  tags = {
-    Name = format("%s-public-%s", var.name, count.index)
-  }
+  tags = merge(
+    {
+      Name = format(
+        "%s-public-%s",
+        var.name,
+        element(split("", var.public_subnets[count.index].zone), length(var.public_subnets[count.index].zone) - 1)
+      )
+    },
+    var.tags,
+  )
 }
 
 resource "aws_route" "public" {
