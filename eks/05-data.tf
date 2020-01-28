@@ -23,11 +23,11 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 data "template_file" "aws_auth_workers" {
-  count    = length(var.workers)
+  count    = length(local.workers)
   template = file("${path.module}/templates/aws_auth_workers.yaml.tpl")
 
   vars = {
-    rolearn = var.workers[count.index]
+    rolearn = local.workers[count.index]
   }
 }
 

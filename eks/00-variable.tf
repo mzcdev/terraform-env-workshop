@@ -23,31 +23,50 @@ variable "allow_ip_address" {
   default     = []
 }
 
-variable "workers" {
-  description = "Additional IAM roles to add to the aws-auth configmap."
-  type        = list(string)
-  default     = []
-}
+# variable "workers" {
+#   description = "Additional IAM roles to add to the aws-auth configmap."
+#   type        = list(string)
+#   default     = [
+#     "arn:aws:iam::${local.account_id}:role/${var.name}-worker",
+#   ]
+# }
 
-variable "map_roles" {
-  description = "Additional IAM roles to add to the aws-auth configmap."
-  type = list(object({
-    rolearn  = string
-    username = string
-    groups   = list(string)
-  }))
-  default = []
-}
+# variable "map_roles" {
+#   description = "Additional IAM roles to add to the aws-auth configmap."
+#   type = list(object({
+#     rolearn  = string
+#     username = string
+#     groups   = list(string)
+#   }))
+#   default = [
+#     {
+#       rolearn  = "arn:aws:iam::${local.account_id}:role/bastion"
+#       username = "iam-role-bastion"
+#       groups   = ["system:masters"]
+#     },
+#   ]
+# }
 
-variable "map_users" {
-  description = "Additional IAM users to add to the aws-auth configmap."
-  type = list(object({
-    userarn  = string
-    username = string
-    groups   = list(string)
-  }))
-  default = []
-}
+# variable "map_users" {
+#   description = "Additional IAM users to add to the aws-auth configmap."
+#   type = list(object({
+#     userarn  = string
+#     username = string
+#     groups   = list(string)
+#   }))
+#   default = [
+#     {
+#       userarn  = "arn:aws:iam::${local.account_id}:user/jungyoul.yu"
+#       username = "jungyoul.yu"
+#       groups   = ["system:masters"]
+#     },
+#     {
+#       userarn  = "arn:aws:iam::${local.account_id}:user/developer"
+#       username = "developer"
+#       groups   = [""]
+#     },
+#   ]
+# }
 
 variable "instance_type" {
   default = "m5.large"

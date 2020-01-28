@@ -4,6 +4,33 @@ locals {
 }
 
 locals {
+  workers = [
+    "arn:aws:iam::${local.account_id}:role/${var.name}-worker",
+  ]
+
+  map_roles = [
+    {
+      rolearn  = "arn:aws:iam::${local.account_id}:role/bastion"
+      username = "iam-role-bastion"
+      groups   = ["system:masters"]
+    },
+  ]
+
+  map_users = [
+    {
+      userarn  = "arn:aws:iam::${local.account_id}:user/jungyoul.yu"
+      username = "jungyoul.yu"
+      groups   = ["system:masters"]
+    },
+    {
+      userarn  = "arn:aws:iam::${local.account_id}:user/developer"
+      username = "developer"
+      groups   = [""]
+    },
+  ]
+}
+
+locals {
   user_data = <<EOF
 #!/bin/bash -xe
 /etc/eks/bootstrap.sh \
