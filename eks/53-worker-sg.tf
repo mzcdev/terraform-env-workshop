@@ -22,7 +22,7 @@ resource "aws_security_group" "worker" {
 
 resource "aws_security_group_rule" "cluster-worker" {
   description              = "Allow worker to communicate with the cluster API Server"
-  security_group_id        = var.cluster_security_group_id
+  security_group_id        = aws_security_group.cluster.id
   source_security_group_id = aws_security_group.worker.id
   from_port                = 443
   to_port                  = 443
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "cluster-worker" {
 resource "aws_security_group_rule" "worker-cluster" {
   description              = "Allow worker Kubelets and pods to receive communication from the cluster control plane"
   security_group_id        = aws_security_group.worker.id
-  source_security_group_id = var.cluster_security_group_id
+  source_security_group_id = aws_security_group.cluster.id
   from_port                = 0
   to_port                  = 65535
   protocol                 = "-1"
