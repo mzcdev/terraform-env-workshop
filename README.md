@@ -67,4 +67,6 @@ cd terraform-env-workshop/eks
 terraform init
 terraform plan
 terraform apply
+
+kubectl get nodes
 ```
