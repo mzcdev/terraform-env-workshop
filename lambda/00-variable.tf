@@ -8,7 +8,7 @@ variable "region" {
 variable "name" {
   description = "서비스 이름."
   type        = string
-  default     = "demo-api"
+  default     = "lambda-demo"
 }
 
 variable "stage" {
@@ -90,5 +90,5 @@ variable "domain_root" {
 variable "domain_name" {
   description = "람다 펑션이 서비스 될 도메인 명"
   type        = string
-  default     = "demo-api.workshop.mzdev.be"
+  default     = "demo-api-workshop.mzdev.be"
 }

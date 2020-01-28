@@ -51,6 +51,8 @@ resource "aws_security_group_rule" "worker-worker" {
 }
 
 resource "aws_security_group_rule" "worker-ssh" {
+  count = length(var.allow_ip_address) > 0 ? 1 : 0
+
   description       = "Allow workstation to communicate with the cluster API Server"
   security_group_id = aws_security_group.worker.id
   cidr_blocks       = var.allow_ip_address

@@ -8,7 +8,7 @@ variable "region" {
 variable "name" {
   description = "VPC 이름을 입력합니다."
   type        = string
-  default     = "workshop"
+  default     = "vpc-demo"
 }
 
 variable "vpc_cidr" {
@@ -61,5 +61,8 @@ variable "private_subnets" {
   ]
 }
 
-data "aws_availability_zones" "azs" {
+variable "tags" {
+  default = {
+    "kubernetes.io/cluster/eks-demo" = "shared"
+  }
 }
