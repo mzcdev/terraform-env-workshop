@@ -8,7 +8,7 @@ variable "region" {
 variable "name" {
   description = "서비스 이름."
   type        = string
-  default     = "demo-api"
+  default     = "lambda-demo"
 }
 
 variable "stage" {

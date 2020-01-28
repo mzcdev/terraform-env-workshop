@@ -8,7 +8,7 @@ variable "region" {
 variable "name" {
   description = "VPC 이름을 입력합니다."
   type        = string
-  default     = "workshop"
+  default     = "vpc-demo"
 }
 
 variable "vpc_cidr" {
