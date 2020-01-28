@@ -69,7 +69,7 @@ variable "volume_size" {
 }
 
 variable "min" {
-  default = "1"
+  default = "2"
 }
 
 variable "max" {
