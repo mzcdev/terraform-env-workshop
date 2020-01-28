@@ -7,9 +7,9 @@ locals {
   user_data = <<EOF
 #!/bin/bash -xe
 /etc/eks/bootstrap.sh \
-  --apiserver-endpoint '${var.cluster_endpoint}' \
-  --b64-cluster-ca '${var.cluster_certificate_authority}' \
-  '${var.cluster_name}'
+  --apiserver-endpoint '${aws_eks_cluster.cluster.endpoint}' \
+  --b64-cluster-ca '${aws_eks_cluster.cluster.certificate_authority.0.data}' \
+  '${var.name}'
 EOF
 
 }

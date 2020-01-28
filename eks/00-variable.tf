@@ -1,14 +1,20 @@
 
 variable "region" {
-  description = "The region to deploy the cluster in, e.g: us-east-1"
+  description = "생성될 리전."
+  type        = string
+  default     = "ap-northeast-2"
 }
 
 variable "name" {
-  description = "Name of the cluster, e.g: seoul-dev-demo-eks"
+  description = "클러스터 이름."
+  type        = string
+  default     = "eks-demo"
 }
 
 variable "kubernetes_version" {
-  default = "1.14"
+  description = "쿠버네티스 버전."
+  type        = string
+  default     = "1.14"
 }
 
 variable "allow_ip_address" {

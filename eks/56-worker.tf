@@ -2,12 +2,12 @@
 resource "aws_launch_template" "worker" {
   name_prefix = "${var.name}-worker-"
 
-  image_id      = var.ami_id != "" ? var.ami_id : data.aws_ami.worker.id
+  image_id      = data.aws_ami.worker.id
   instance_type = var.instance_type
 
   user_data = base64encode(local.user_data)
 
-  key_name = var.key_path != "" ? var.name : var.key_name
+  key_name = var.key_name
 
   # ebs_optimized = var.ebs_optimized
 
@@ -21,9 +21,9 @@ resource "aws_launch_template" "worker" {
     }
   }
 
-  iam_instance_profile {
-    name = aws_iam_instance_profile.worker.name
-  }
+  # iam_instance_profile {
+  #   name = aws_iam_instance_profile.worker.name
+  # }
 
   monitoring {
     enabled = var.enable_monitoring
@@ -31,11 +31,8 @@ resource "aws_launch_template" "worker" {
 
   network_interfaces {
     delete_on_termination       = true
-    associate_public_ip_address = var.associate_public_ip_address
-    security_groups = concat(
-      [aws_security_group.worker.id],
-      var.security_groups,
-    )
+    associate_public_ip_address = false
+    security_groups = [aws_security_group.worker.id]
   }
 }
 
