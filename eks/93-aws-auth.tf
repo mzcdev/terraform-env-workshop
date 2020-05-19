@@ -22,5 +22,4 @@ EOF
     mapUsers = yamlencode(local.map_users)
     # mapAccounts = yamlencode(local.map_accounts)
   }
-
 }
