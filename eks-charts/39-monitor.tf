@@ -101,12 +101,12 @@ resource "helm_release" "datadog" {
 
   set {
     name  = "datadog.apiKey"
-    value = "83af7af76ee0afdea9172232edae4ad6"
+    value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   }
 
   set {
     name  = "datadog.appKey"
-    value = "053a694eb61bc5b6a27dab5c6c4f3b8f49559b75"
+    value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   }
 
   set {
