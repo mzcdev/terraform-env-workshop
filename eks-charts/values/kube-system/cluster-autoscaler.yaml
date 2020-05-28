@@ -1,0 +1,24 @@
+nameOverride: cluster-autoscaler
+
+autoDiscovery:
+  enabled: true
+  clusterName: "eks-demo"
+
+awsRegion: "ap-northeast-2"
+
+extraArgs:
+  v: 4
+  logtostderr: true
+  scale-down-enabled: true
+  scale-down-utilization-threshold: 0.6
+  skip-nodes-with-local-storage: false
+  skip-nodes-with-system-pods: false
+
+podAnnotations:
+  iam.amazonaws.com/role: "eks-demo-worker-asg"
+
+sslCertPath: /etc/ssl/certs/ca-bundle.crt
+
+rbac:
+  create: true
+  pspEnabled: true

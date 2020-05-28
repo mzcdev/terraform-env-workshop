@@ -1,0 +1,131 @@
+nameOverride: jenkins
+
+master:
+  adminUser: "admin"
+  adminPassword: "password"
+
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 1200m
+      memory: 3Gi
+
+  sidecars:
+    configAutoReload:
+      enabled: true
+
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+
+  hostNetworking: true
+  javaOpts: "-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul"
+
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+    hostName: "jenkins.closed.mzdev.be"
+    tls:
+      - secretName: jenkins-tls
+        hosts:
+          - "jenkins.closed.mzdev.be"
+
+  overwritePlugins: true
+  installPlugins:
+    # https://github.com/helm/charts/blob/master/stable/jenkins/values.yaml
+    - kubernetes:latest
+    - workflow-job:latest
+    - workflow-aggregator:latest
+    - credentials-binding:latest
+    # https://plugins.jenkins.io/blueocean
+    - blueocean:latest
+    # https://plugins.jenkins.io/kubernetes-credentials-provider
+    - kubernetes-credentials-provider:latest
+    # https://plugins.jenkins.io/pipeline-github-lib
+    - pipeline-github-lib:latest
+    # https://plugins.jenkins.io/active-directory
+    - active-directory:latest
+    # https://plugins.jenkins.io/role-strategy
+    - role-strategy:latest
+    # https://plugins.jenkins.io/ldap
+    - ldap:latest
+    # https://plugins.jenkins.io/google-login
+    - google-login:latest
+    # https://plugins.jenkins.io/oic-auth
+    - oic-auth:latest
+
+  securityRealm: |-
+    <securityRealm class="org.jenkinsci.plugins.oic.OicSecurityRealm" plugin="oic-auth@1.0">
+      <clientId>jenkins</clientId>
+      <clientSecret>f76f3359-4be2-45dd-aba9-6f5204e62438</clientSecret>
+      <tokenServerUrl>https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/token</tokenServerUrl>
+      <authorizationServerUrl>https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/auth</authorizationServerUrl>
+      <userInfoServerUrl>https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/userinfo</userInfoServerUrl>
+      <userNameField>preferred_username</userNameField>
+      <scopes>openid email</scopes>
+    </securityRealm>
+
+  jobs:
+    sample-node: |-
+      <?xml version='1.1' encoding='UTF-8'?>
+      <org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@2.21">
+        <actions/>
+        <description></description>
+        <properties>
+          <org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig plugin="docker-workflow@1.23">
+            <dockerLabel></dockerLabel>
+            <registry plugin="docker-commons@1.16"/>
+          </org.jenkinsci.plugins.docker.workflow.declarative.FolderConfig>
+          <org.csanchez.jenkins.plugins.kubernetes.KubernetesFolderProperty plugin="kubernetes@1.25.2">
+            <permittedClouds/>
+          </org.csanchez.jenkins.plugins.kubernetes.KubernetesFolderProperty>
+        </properties>
+        <healthMetrics>
+          <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin="cloudbees-folder@6.12">
+            <nonRecursive>false</nonRecursive>
+          </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
+        </healthMetrics>
+        <orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.12">
+          <pruneDeadBranches>true</pruneDeadBranches>
+          <daysToKeep>20</daysToKeep>
+          <numToKeep>20</numToKeep>
+        </orphanedItemStrategy>
+        <triggers/>
+        <disabled>false</disabled>
+        <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.5.5">
+          <data>
+            <jenkins.branch.BranchSource>
+              <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.2.2">
+                <id>0d7f6197-6872-4bcc-a63d-5b5cb27ede76</id>
+                <remote>https://github.com/nalbam/sample-node</remote>
+                <credentialsId></credentialsId>
+                <traits>
+                  <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+                </traits>
+              </source>
+              <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">
+                <properties class="empty-list"/>
+              </strategy>
+            </jenkins.branch.BranchSource>
+          </data>
+          <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+        </sources>
+        <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
+          <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+          <scriptPath>Jenkinsfile</scriptPath>
+        </factory>
+      </org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
+
+rbac:
+  create: true
+  readSecrets: true
+
+persistence:
+  enabled: true
+  storageClass: default
+  size: 20Gi

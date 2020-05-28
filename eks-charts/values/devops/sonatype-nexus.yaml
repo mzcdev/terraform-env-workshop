@@ -1,0 +1,57 @@
+fullnameOverride: sonatype-nexus
+
+statefulset:
+  enabled: true
+
+nexus:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 1200m
+      memory: 3Gi
+
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+
+  livenessProbe:
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    failureThreshold: 12
+    path: /
+  readinessProbe:
+    initialDelaySeconds: 60
+    periodSeconds: 30
+    failureThreshold: 12
+    path: /
+
+persistence:
+  enabled: true
+  storageClass: default
+  storageSize: 50Gi
+
+nexusProxy:
+  env:
+    nexusHttpHost: "nexus.closed.mzdev.be"
+
+nexusBackup:
+  enabled: false
+  nexusAdminPassword: "password"
+  persistence:
+    enabled: false
+    storageClass: default
+    storageSize: 20Gi
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    ingress.kubernetes.io/proxy-body-size: "0"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+  tls:
+    enabled: true
+    secretName: sonatype-nexus-tls

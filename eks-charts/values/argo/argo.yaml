@@ -1,0 +1,33 @@
+nameOverride: argo
+
+installCRD: true
+
+controller:
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    iam.amazonaws.com/role: "eks-demo-worker-bucket"
+
+server:
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  ingress:
+    enabled: false
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+    hosts:
+      - "argo.closed.mzdev.be"
+    tls:
+      - secretName: argo-tls
+        hosts:
+          - "argo.closed.mzdev.be"
+
+useDefaultArtifactRepo: true
+useStaticCredentials: false
+
+artifactRepository:
+  s3:
+    bucket: "eks-demo-argo-demo"
+    endpoint: s3.amazonaws.com

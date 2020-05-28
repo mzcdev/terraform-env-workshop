@@ -1,0 +1,18 @@
+nameOverride: efs-provisioner
+
+podAnnotations:
+  iam.amazonaws.com/role: "eks-demo-worker-efs"
+
+efsProvisioner:
+  efsFileSystemId: ""
+  awsRegion: "ap-northeast-2"
+  path: /shared
+  provisionerName: "aws-efs"
+  storageClass:
+    name: "efs"
+    isDefault: "false"
+    gidAllocate:
+      enabled: "true"
+      gidMin: "40000"
+      gidMax: "50000"
+    reclaimPolicy: "Delete"

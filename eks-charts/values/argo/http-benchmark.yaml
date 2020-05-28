@@ -1,0 +1,31 @@
+resources:
+  - apiVersion: argoproj.io/v1alpha1
+    kind: AnalysisTemplate
+    metadata:
+      name: http-benchmark
+    spec:
+      args:
+        - name: url
+      metrics:
+        - name: http-benchmark
+          count: 10
+          failureLimit: 5
+          interval: 5s
+          provider:
+            job:
+              spec:
+                template:
+                  metadata:
+                    annotations:
+                      sidecar.istio.io/inject: "false"
+                  spec:
+                    containers:
+                      - name: load-tester
+                        image: argoproj/load-tester:latest
+                        command: [sh, -xec]
+                        args:
+                          - |
+                            wrk -t1 -c1 -d5 -s report.lua {{args.url}}
+                            jq -e '.errors_ratio <= 0.1' report.json
+                    restartPolicy: Never
+                backoffLimit: 0

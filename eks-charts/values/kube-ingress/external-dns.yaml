@@ -1,0 +1,11 @@
+nameOverride: external-dns
+
+sources:
+  - service
+#  - ingress
+
+podAnnotations:
+  iam.amazonaws.com/role: "eks-demo-worker-route53"
+
+rbac:
+  create: true

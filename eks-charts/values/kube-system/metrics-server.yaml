@@ -1,0 +1,5 @@
+nameOverride: metrics-server
+
+args:
+  - --kubelet-insecure-tls
+  - --kubelet-preferred-address-types=InternalDNS,InternalIP,ExternalDNS,ExternalIP,Hostname

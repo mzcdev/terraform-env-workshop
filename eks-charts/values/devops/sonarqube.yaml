@@ -1,0 +1,49 @@
+fullnameOverride: sonarqube
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    ingress.kubernetes.io/proxy-body-size: "0"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+  hosts:
+    - name: "sonarqube.closed.mzdev.be"
+      path: /
+  tls:
+    - secretName: sonarqube-tls
+      hosts:
+        - "sonarqube.closed.mzdev.be"
+
+annotations:
+  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+
+# plugins:
+#   install:
+#     - "https://github.com/checkstyle/sonar-checkstyle/releases/download/4.30/checkstyle-sonar-plugin-4.30.jar"
+#     - "https://github.com/jensgerdes/sonar-pmd/releases/download/3.2.1/sonar-pmd-plugin-3.2.1.jar"
+#     - "https://binaries.sonarsource.com/Distribution/sonar-javascript-plugin/sonar-javascript-plugin-6.2.0.12043.jar"
+#     - "https://binaries.sonarsource.com/Distribution/sonar-java-plugin/sonar-java-plugin-6.3.0.21585.jar"
+#     - "https://github.com/spotbugs/sonar-findbugs/releases/download/4.0.0/sonar-findbugs-plugin-4.0.0.jar"
+
+resources:
+  requests:
+    cpu: 1000m
+    memory: 2Gi
+  limits:
+    cpu: 1200m
+    memory: 3Gi
+
+persistence:
+  enabled: true
+  storageClass: default
+  size: 20Gi
+
+postgresql:
+  enabled: true
+  persistence:
+    enabled: true
+    storageClass: default
+    size: 8Gi

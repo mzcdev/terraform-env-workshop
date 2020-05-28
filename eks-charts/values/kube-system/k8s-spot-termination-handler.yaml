@@ -1,0 +1,10 @@
+nameOverride: k8s-spot-termination-handler
+
+clusterName: "eks-demo"
+
+podAnnotations:
+  iam.amazonaws.com/role: "eks-demo-worker-asg"
+
+detachAsg: false
+
+slackUrl: ""

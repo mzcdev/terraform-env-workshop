@@ -1,17 +1,27 @@
+# locals
 
 locals {
   account_id = data.aws_caller_identity.current.account_id
 }
 
 locals {
+  name = "${var.name}"
+
+  worker = "${local.name}-worker"
+
   workers = [
-    "arn:aws:iam::${local.account_id}:role/${var.name}-worker",
+    "arn:aws:iam::${local.account_id}:role/${local.worker}",
   ]
 
   map_roles = [
     {
-      rolearn  = "arn:aws:iam::${local.account_id}:role/bastion"
-      username = "iam-role-bastion"
+      rolearn  = "arn:aws:iam::${local.account_id}:role/dev-bastion"
+      username = "iam-role-eks-bastion"
+      groups   = ["system:masters"]
+    },
+    {
+      rolearn  = "arn:aws:iam::${local.account_id}:role/dev-demo-bastion"
+      username = "iam-role-dev-bastion"
       groups   = ["system:masters"]
     },
   ]
@@ -25,18 +35,14 @@ locals {
     {
       userarn  = "arn:aws:iam::${local.account_id}:user/developer"
       username = "developer"
-      groups   = [""]
+      groups   = []
+    },
+    {
+      userarn  = "arn:aws:iam::${local.account_id}:user/readonly"
+      username = "readonly"
+      groups   = []
     },
   ]
-}
 
-locals {
-  user_data = <<EOF
-#!/bin/bash -xe
-/etc/eks/bootstrap.sh \
-  --apiserver-endpoint '${aws_eks_cluster.cluster.endpoint}' \
-  --b64-cluster-ca '${aws_eks_cluster.cluster.certificate_authority.0.data}' \
-  '${var.name}'
-EOF
-
+  nat_gateway_ips = data.terraform_remote_state.vpc.outputs.nat_gateway_ips
 }

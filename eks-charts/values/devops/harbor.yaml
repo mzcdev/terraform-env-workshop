@@ -1,0 +1,60 @@
+nameOverride: harbor
+
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    secretName: "harbor-core-tls"
+    notarySecretName: "harbor-notary-tls"
+  ingress:
+    hosts:
+      core: "harbor-core.closed.mzdev.be"
+      notary: "harbor-notary.closed.mzdev.be"
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      ingress.kubernetes.io/proxy-body-size: "0"
+      ingress.kubernetes.io/ssl-redirect: "true"
+      kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/proxy-body-size: "0"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+
+externalURL: "https://harbor-core.closed.mzdev.be"
+
+harborAdminPassword: "password"
+
+core:
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    iam.amazonaws.com/role: "eks-demo-worker-bucket"
+
+registry:
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    iam.amazonaws.com/role: "eks-demo-worker-bucket"
+
+chartmuseum:
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    iam.amazonaws.com/role: "eks-demo-worker-bucket"
+
+persistence:
+  enabled: true
+  resourcePolicy: "keep"
+  persistentVolumeClaim:
+    registry:
+      storageClass: default
+    chartmuseum:
+      storageClass: default
+    jobservice:
+      storageClass: default
+    database:
+      storageClass: default
+    redis:
+      storageClass: default
+    trivy:
+      storageClass: default
+  imageChartStorage:
+    s3:
+      region: "ap-northeast-2"
+      bucket: "eks-demo-harbor-demo"
