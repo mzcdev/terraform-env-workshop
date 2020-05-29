@@ -11,6 +11,8 @@ resource "helm_release" "cert-manager-issuers" {
     file("./values/kube-ingress/cert-manager-issuers.yaml")
   ]
 
+  wait = false
+
   create_namespace = true
 
   depends_on = [

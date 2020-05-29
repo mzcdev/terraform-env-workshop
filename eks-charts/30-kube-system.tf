@@ -68,11 +68,6 @@ resource "helm_release" "k8s-spot-termination-handler" {
   }
 
   set {
-    name  = "detachAsg"
-    value = true
-  }
-
-  set {
     name  = "slackUrl"
     value = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
   }

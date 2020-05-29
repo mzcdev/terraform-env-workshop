@@ -80,7 +80,7 @@ resources:
         - name: AvgResponseTime
           rules:
             - alert: AvgResponseTime
-              expr: (sum(rate(nginx_ingress_controller_response_duration_seconds_sum[5m])) by (host) !=0) / (sum(rate(nginx_ingress_controller_response_duration_seconds_count[5m])) by (host) !=0) > 5
+              expr: (sum(rate(nginx_ingress_controller_response_duration_seconds_sum[5m])) by (host) != 0) / (sum(rate(nginx_ingress_controller_response_duration_seconds_count[5m])) by (host) != 0) > 5
               for: 5m
               labels:
                 severity: Warning
