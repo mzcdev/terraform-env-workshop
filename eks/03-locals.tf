@@ -19,11 +19,6 @@ locals {
       username = "iam-role-eks-bastion"
       groups   = ["system:masters"]
     },
-    {
-      rolearn  = "arn:aws:iam::${local.account_id}:role/dev-demo-bastion"
-      username = "iam-role-dev-bastion"
-      groups   = ["system:masters"]
-    },
   ]
 
   map_users = [
