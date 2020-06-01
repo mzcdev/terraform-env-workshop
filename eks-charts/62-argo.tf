@@ -37,3 +37,25 @@ resource "helm_release" "argo-gatekeeper" {
 
   create_namespace = true
 }
+
+resource "kubernetes_cluster_role_binding" "cluster-admin-argo-default" {
+  metadata {
+    name = "cluster-admin:argo:default"
+  }
+
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+
+  subject {
+    kind      = "ServiceAccount"
+    namespace = "argo"
+    name      = "default"
+  }
+
+  depends_on = [
+    helm_release.jenkins,
+  ]
+}
