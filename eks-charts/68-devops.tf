@@ -86,15 +86,15 @@ resource "helm_release" "jenkins" {
   ]
 }
 
-resource "kubernetes_cluster_role_binding" "jenkins-role" {
+resource "kubernetes_cluster_role_binding" "edit-devops-default" {
   metadata {
-    name = "cluster-admin:devops:jenkins"
+    name = "edit:devops:default"
   }
 
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "ClusterRole"
-    name      = "cluster-admin"
+    name      = "edit"
   }
 
   subject {
