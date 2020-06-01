@@ -99,8 +99,8 @@ resource "kubernetes_cluster_role_binding" "jenkins-role" {
 
   subject {
     kind      = "ServiceAccount"
-    name      = "default"
     namespace = "devops"
+    name      = "default"
   }
 
   depends_on = [
