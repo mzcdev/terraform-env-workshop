@@ -56,6 +56,6 @@ resource "kubernetes_cluster_role_binding" "cluster-admin-argo-default" {
   }
 
   depends_on = [
-    helm_release.jenkins,
+    helm_release.argo,
   ]
 }
