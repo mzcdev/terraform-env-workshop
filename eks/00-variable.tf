@@ -117,10 +117,6 @@ variable "host_root" {
   default = "mzdev.be"
 }
 
-variable "host_closed" {
-  default = "*.closed.mzdev.be"
-}
-
 variable "host_open" {
   default = "*.demo.mzdev.be"
 }

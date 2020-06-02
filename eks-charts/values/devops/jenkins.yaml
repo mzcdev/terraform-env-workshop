@@ -29,11 +29,11 @@ master:
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
-    hostName: "jenkins.closed.mzdev.be"
+    hostName: "jenkins.demo.mzdev.be"
     tls:
       - secretName: jenkins-tls
         hosts:
-          - "jenkins.closed.mzdev.be"
+          - "jenkins.demo.mzdev.be"
 
   overwritePlugins: true
   installPlugins:
@@ -63,9 +63,9 @@ master:
     <securityRealm class="org.jenkinsci.plugins.oic.OicSecurityRealm" plugin="oic-auth@1.0">
       <clientId>jenkins</clientId>
       <clientSecret>f76f3359-4be2-45dd-aba9-6f5204e62438</clientSecret>
-      <tokenServerUrl>https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/token</tokenServerUrl>
-      <authorizationServerUrl>https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/auth</authorizationServerUrl>
-      <userInfoServerUrl>https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/userinfo</userInfoServerUrl>
+      <tokenServerUrl>https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/token</tokenServerUrl>
+      <authorizationServerUrl>https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/auth</authorizationServerUrl>
+      <userInfoServerUrl>https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/userinfo</userInfoServerUrl>
       <userNameField>preferred_username</userNameField>
       <scopes>openid email</scopes>
     </securityRealm>

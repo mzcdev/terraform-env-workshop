@@ -9,17 +9,17 @@ def base_domain = "demo.mzdev.be"
 @Field
 def slack_token = ""
 @Field
-def jenkins = "jenkins.closed.mzdev.be"
+def jenkins = "jenkins.demo.mzdev.be"
 @Field
-def harbor = "harbor-core.closed.mzdev.be"
+def harbor = "harbor-core.demo.mzdev.be"
 @Field
-def archiva = "archiva.closed.mzdev.be"
+def archiva = "archiva.demo.mzdev.be"
 @Field
-def chartmuseum = "chartmuseum.closed.mzdev.be"
+def chartmuseum = "chartmuseum.demo.mzdev.be"
 @Field
-def registry = "registry.closed.mzdev.be"
+def registry = "registry.demo.mzdev.be"
 @Field
-def nexus = "nexus.closed.mzdev.be"
+def nexus = "nexus.demo.mzdev.be"
 @Field
-def sonarqube = "sonarqube.closed.mzdev.be"
+def sonarqube = "sonarqube.demo.mzdev.be"
 return this

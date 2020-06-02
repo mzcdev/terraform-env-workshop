@@ -598,18 +598,18 @@
     {
       "id": "859f441a-7820-4717-aa56-118762c4ba72",
       "clientId": "argo",
-      "rootUrl": "https://argo.closed.mzdev.be/",
-      "adminUrl": "https://argo.closed.mzdev.be/",
+      "rootUrl": "https://argo.demo.mzdev.be/",
+      "adminUrl": "https://argo.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://argo.closed.mzdev.be/*"
+        "https://argo.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://argo.closed.mzdev.be"
+        "https://argo.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -657,18 +657,18 @@
     {
       "id": "8d3945a0-9df5-4f1b-bc94-6edcb6b0d6d3",
       "clientId": "argo-cd",
-      "rootUrl": "https://argocd.closed.mzdev.be/",
-      "adminUrl": "https://argocd.closed.mzdev.be/",
+      "rootUrl": "https://argocd.demo.mzdev.be/",
+      "adminUrl": "https://argocd.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://argocd.closed.mzdev.be/*"
+        "https://argocd.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://argocd.closed.mzdev.be"
+        "https://argocd.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -754,18 +754,18 @@
     {
       "id": "553f5b5f-1598-4170-9cf7-15197458e864",
       "clientId": "grafana",
-      "rootUrl": "https://grafana.closed.mzdev.be/",
-      "adminUrl": "https://grafana.closed.mzdev.be/",
+      "rootUrl": "https://grafana.demo.mzdev.be/",
+      "adminUrl": "https://grafana.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://grafana.closed.mzdev.be/*"
+        "https://grafana.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://grafana.closed.mzdev.be"
+        "https://grafana.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -812,18 +812,18 @@
     {
       "id": "8ee9c834-055e-4744-be15-6171be211f84",
       "clientId": "jenkins",
-      "rootUrl": "https://jenkins.closed.mzdev.be/",
-      "adminUrl": "https://jenkins.closed.mzdev.be/",
+      "rootUrl": "https://jenkins.demo.mzdev.be/",
+      "adminUrl": "https://jenkins.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://jenkins.closed.mzdev.be/*"
+        "https://jenkins.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://jenkins.closed.mzdev.be"
+        "https://jenkins.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -870,18 +870,18 @@
     {
       "id": "459a8f61-0cf3-45ed-a1b3-d1339dd8d16a",
       "clientId": "kiali",
-      "rootUrl": "https://kiali-istio.closed.mzdev.be/",
-      "adminUrl": "https://kiali-istio.closed.mzdev.be/",
+      "rootUrl": "https://kiali-istio.demo.mzdev.be/",
+      "adminUrl": "https://kiali-istio.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://kiali-istio.closed.mzdev.be/*"
+        "https://kiali-istio.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://kiali-istio.closed.mzdev.be"
+        "https://kiali-istio.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -1032,18 +1032,18 @@
     {
       "id": "18a7c215-a6cf-4ac0-8abe-39fb2d5c47a7",
       "clientId": "tracing",
-      "rootUrl": "https://tracing-istio.closed.mzdev.be/",
-      "adminUrl": "https://tracing-istio.closed.mzdev.be/",
+      "rootUrl": "https://tracing-istio.demo.mzdev.be/",
+      "adminUrl": "https://tracing-istio.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://tracing-istio.closed.mzdev.be/*"
+        "https://tracing-istio.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://tracing-istio.closed.mzdev.be"
+        "https://tracing-istio.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -1091,18 +1091,18 @@
     {
       "id": "61b7101e-16c0-4050-a862-c641e0c9e5f3",
       "clientId": "weave-scope",
-      "rootUrl": "https://weave-scope.closed.mzdev.be/",
-      "adminUrl": "https://weave-scope.closed.mzdev.be/",
+      "rootUrl": "https://weave-scope.demo.mzdev.be/",
+      "adminUrl": "https://weave-scope.demo.mzdev.be/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://weave-scope.closed.mzdev.be/*"
+        "https://weave-scope.demo.mzdev.be/*"
       ],
       "webOrigins": [
-        "https://weave-scope.closed.mzdev.be"
+        "https://weave-scope.demo.mzdev.be"
       ],
       "notBefore": 0,
       "bearerOnly": false,

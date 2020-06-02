@@ -13,24 +13,24 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - "grafana.closed.mzdev.be"
+    - "grafana.demo.mzdev.be"
   tls:
     - secretName: grafana-tls
       hosts:
-        - "grafana.closed.mzdev.be"
+        - "grafana.demo.mzdev.be"
 
 grafana.ini:
   server:
-    root_url: "https://grafana.closed.mzdev.be/"
+    root_url: "https://grafana.demo.mzdev.be/"
   auth:
     disable_login_form: true
   auth.generic_oauth:
     enabled: true
     client_id: "grafana"
     client_secret: "df7d395f-e833-49b6-b19c-eea8a54fb06a"
-    auth_url: "https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/auth"
-    token_url: "https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/token"
-    api_url: "https://keycloak.closed.mzdev.be/auth/realms/demo/protocol/openid-connect/userinfo"
+    auth_url: "https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/auth"
+    token_url: "https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/token"
+    api_url: "https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/userinfo"
     scopes: "openid email"
     allow_sign_up: "true"
 

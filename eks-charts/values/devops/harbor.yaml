@@ -8,8 +8,8 @@ expose:
     notarySecretName: "harbor-notary-tls"
   ingress:
     hosts:
-      core: "harbor-core.closed.mzdev.be"
-      notary: "harbor-notary.closed.mzdev.be"
+      core: "harbor-core.demo.mzdev.be"
+      notary: "harbor-notary.demo.mzdev.be"
     annotations:
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
       ingress.kubernetes.io/proxy-body-size: "0"
@@ -19,7 +19,7 @@ expose:
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
 
-externalURL: "https://harbor-core.closed.mzdev.be"
+externalURL: "https://harbor-core.demo.mzdev.be"
 
 harborAdminPassword: "password"
 

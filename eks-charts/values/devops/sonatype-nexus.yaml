@@ -33,7 +33,7 @@ persistence:
 
 nexusProxy:
   env:
-    nexusHttpHost: "nexus.closed.mzdev.be"
+    nexusHttpHost: "nexus.demo.mzdev.be"
 
 nexusBackup:
   enabled: false

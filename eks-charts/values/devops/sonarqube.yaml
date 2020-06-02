@@ -10,12 +10,12 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - name: "sonarqube.closed.mzdev.be"
+    - name: "sonarqube.demo.mzdev.be"
       path: /
   tls:
     - secretName: sonarqube-tls
       hosts:
-        - "sonarqube.closed.mzdev.be"
+        - "sonarqube.demo.mzdev.be"
 
 annotations:
   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"

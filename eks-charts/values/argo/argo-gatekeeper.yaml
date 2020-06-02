@@ -1,6 +1,6 @@
 nameOverride: argo-gatekeeper
 
-discoveryURL: https://keycloak.closed.mzdev.be/auth/realms/demo
+discoveryURL: https://keycloak.demo.mzdev.be/auth/realms/demo
 
 upstreamURL: http://argo-server.argo.svc.cluster.local:2746
 
@@ -15,8 +15,8 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - "argo.closed.mzdev.be"
+    - "argo.demo.mzdev.be"
   tls:
     - secretName: argo-tls
       hosts:
-        - "argo.closed.mzdev.be"
+        - "argo.demo.mzdev.be"

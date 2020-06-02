@@ -1,6 +1,6 @@
 nameOverride: weave-scope-gatekeeper
 
-discoveryURL: https://keycloak.closed.mzdev.be/auth/realms/demo
+discoveryURL: https://keycloak.demo.mzdev.be/auth/realms/demo
 
 upstreamURL: http://weave-scope-weave-scope.weave.svc.cluster.local:80
 
@@ -15,8 +15,8 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - "weave-scope.closed.mzdev.be"
+    - "weave-scope.demo.mzdev.be"
   tls:
     - secretName: weave-scope-tls
       hosts:
-        - "weave-scope.closed.mzdev.be"
+        - "weave-scope.demo.mzdev.be"

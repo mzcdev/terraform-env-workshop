@@ -1,4 +1,4 @@
-nameOverride: nginx-ingress-closed
+nameOverride: nginx-ingress
 
 controller:
   kind: DaemonSet
@@ -15,7 +15,7 @@ controller:
       service.beta.kubernetes.io/aws-load-balancer-security-groups: ""
       service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ""
       # service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
-      external-dns.alpha.kubernetes.io/hostname: "*.closed.mzdev.be"
+      external-dns.alpha.kubernetes.io/hostname: "*.demo.mzdev.be"
       external-dns.alpha.kubernetes.io/ttl: "300"
   stats:
     enabled: true

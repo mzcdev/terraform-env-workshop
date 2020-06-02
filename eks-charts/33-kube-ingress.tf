@@ -52,37 +52,16 @@ resource "helm_release" "external-dns" {
   create_namespace = true
 }
 
-resource "helm_release" "nginx-ingress-closed" {
+resource "helm_release" "nginx-ingress" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "nginx-ingress"
   version    = "1.38.0" # helm chart version stable/nginx-ingress
 
   namespace = "kube-ingress"
-  name      = "nginx-ingress-closed"
+  name      = "nginx-ingress"
 
   values = [
-    file("./values/kube-ingress/nginx-ingress-closed.yaml")
-  ]
-
-  wait = false
-
-  create_namespace = true
-
-  depends_on = [
-    helm_release.prometheus-operator,
-  ]
-}
-
-resource "helm_release" "nginx-ingress-open" {
-  repository = "https://kubernetes-charts.storage.googleapis.com"
-  chart      = "nginx-ingress"
-  version    = "1.38.0" # helm chart version stable/nginx-ingress
-
-  namespace = "kube-ingress"
-  name      = "nginx-ingress-open"
-
-  values = [
-    file("./values/kube-ingress/nginx-ingress-open.yaml")
+    file("./values/kube-ingress/nginx-ingress.yaml")
   ]
 
   wait = false

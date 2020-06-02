@@ -11,8 +11,8 @@ weave-scope-frontend:
     paths:
       - /
     hosts:
-      - weave-scope.closed.mzdev.be
+      - weave-scope.demo.mzdev.be
     tls:
       - secretName: weave-scope-tls
         hosts:
-          - weave-scope.closed.mzdev.be
+          - weave-scope.demo.mzdev.be
