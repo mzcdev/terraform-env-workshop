@@ -2,7 +2,7 @@ fullnameOverride: chartmuseum
 
 replica:
   annotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
     iam.amazonaws.com/role: "eks-demo-worker-bucket"
 
 env:

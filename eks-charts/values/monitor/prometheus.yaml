@@ -8,8 +8,8 @@ server:
     enabled: true
     storageClass: default
     size: 8Gi
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
 alertmanager:
   enabled: false

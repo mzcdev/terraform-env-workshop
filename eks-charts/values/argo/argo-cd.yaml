@@ -9,9 +9,8 @@ controller:
       enabled: true
       additionalLabels:
         release: prometheus-operator
-
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
 server:
   extraArgs:
@@ -23,9 +22,8 @@ server:
       enabled: true
       additionalLabels:
         release: prometheus-operator
-
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
   ingress:
     enabled: true

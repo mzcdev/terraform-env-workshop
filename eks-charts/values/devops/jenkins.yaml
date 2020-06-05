@@ -16,8 +16,8 @@ master:
     configAutoReload:
       enabled: true
 
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
   hostNetworking: true
   javaOpts: "-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul"

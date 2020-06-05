@@ -2,8 +2,8 @@ nameOverride: grafana
 
 adminUser: "jyyu@mz.co.kr"
 
-podAnnotations:
-  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+# podAnnotations:
+#   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
 ingress:
   enabled: true

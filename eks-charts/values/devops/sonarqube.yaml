@@ -17,8 +17,8 @@ ingress:
       hosts:
         - "sonarqube.demo.mzdev.be"
 
-annotations:
-  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+# annotations:
+#   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
 # plugins:
 #   install:

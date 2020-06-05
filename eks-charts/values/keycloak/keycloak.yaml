@@ -18,8 +18,8 @@ keycloak:
         hosts:
           - "keycloak.demo.mzdev.be"
 
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
   extraEnv: |
     - name: PROXY_ADDRESS_FORWARDING

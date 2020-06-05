@@ -4,12 +4,12 @@ installCRD: true
 
 controller:
   podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
     iam.amazonaws.com/role: "eks-demo-worker-bucket"
 
 server:
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
   ingress:
     enabled: false
     annotations:
