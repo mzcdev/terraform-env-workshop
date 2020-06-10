@@ -3,7 +3,7 @@
 resource "helm_release" "argo" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo"
-  version    = "0.9.3" # helm chart version argo/argo
+  version    = "0.9.5" # helm chart version argo/argo
 
   namespace = "argo"
   name      = "argo"
@@ -24,7 +24,7 @@ resource "helm_release" "argo" {
 resource "helm_release" "argo-gatekeeper" {
   repository = "https://gabibbo97.github.io/charts/"
   chart      = "keycloak-gatekeeper"
-  version    = "3.3.0" # helm chart version gabibbo97/keycloak-gatekeeper
+  version    = "3.3.1" # helm chart version gabibbo97/keycloak-gatekeeper
 
   namespace = "argo"
   name      = "argo-gatekeeper"
