@@ -63,6 +63,7 @@ server:
         - email
         - profile
         - roles
+        - groups
 
   # https://argoproj.github.io/argo-cd/operator-manual/user-management/#existing-oidc-provider
   # https://argoproj.github.io/argo-cd/operator-manual/user-management/auth0/
