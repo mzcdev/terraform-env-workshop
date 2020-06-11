@@ -62,7 +62,7 @@ resource "helm_release" "docker-registry" {
 resource "helm_release" "jenkins" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
-  version    = "1.21.3" # helm chart version stable/jenkins
+  version    = "2.0.1" # helm chart version stable/jenkins
 
   namespace = "devops"
   name      = "jenkins"

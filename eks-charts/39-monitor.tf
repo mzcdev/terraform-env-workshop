@@ -3,7 +3,7 @@
 resource "helm_release" "grafana" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "grafana"
-  version    = "5.0.26" # helm chart version stable/grafana
+  version    = "5.1.4" # helm chart version stable/grafana
 
   namespace = "monitor"
   name      = "grafana"
@@ -46,7 +46,7 @@ resource "helm_release" "prometheus-adapter" {
 resource "helm_release" "prometheus-operator" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "prometheus-operator"
-  version    = "8.13.8" # helm chart version stable/prometheus-operator
+  version    = "8.14.0" # helm chart version stable/prometheus-operator
 
   namespace = "monitor"
   name      = "prometheus-operator"
@@ -86,7 +86,7 @@ resource "helm_release" "prometheus-alert-rules" {
 resource "helm_release" "datadog" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "datadog"
-  version    = "2.3.3" # helm chart version stable/datadog
+  version    = "2.3.9" # helm chart version stable/datadog
 
   namespace = "monitor"
   name      = "datadog"

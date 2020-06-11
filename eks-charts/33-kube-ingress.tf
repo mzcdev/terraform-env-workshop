@@ -23,7 +23,7 @@ resource "helm_release" "cert-manager-issuers" {
 resource "helm_release" "cert-manager" {
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
-  version    = "v0.15.0" # helm chart version jetstack/cert-manager
+  version    = "v0.15.1" # helm chart version jetstack/cert-manager
 
   namespace = "kube-ingress"
   name      = "cert-manager"
@@ -38,7 +38,7 @@ resource "helm_release" "cert-manager" {
 resource "helm_release" "external-dns" {
   repository = "https://charts.bitnami.com/bitnami"
   chart      = "external-dns"
-  version    = "3.0.2" # helm chart version bitnami/external-dns
+  version    = "3.2.0" # helm chart version bitnami/external-dns
 
   namespace = "kube-ingress"
   name      = "external-dns"
@@ -55,7 +55,7 @@ resource "helm_release" "external-dns" {
 resource "helm_release" "nginx-ingress" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "nginx-ingress"
-  version    = "1.38.0" # helm chart version stable/nginx-ingress
+  version    = "1.39.1" # helm chart version stable/nginx-ingress
 
   namespace = "kube-ingress"
   name      = "nginx-ingress"
