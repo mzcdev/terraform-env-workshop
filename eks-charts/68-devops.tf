@@ -28,7 +28,7 @@ resource "helm_release" "archiva" {
 resource "helm_release" "chartmuseum" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "chartmuseum"
-  version    = "2.12.2" # helm chart version stable/chartmuseum
+  version    = "2.13.0" # helm chart version stable/chartmuseum
 
   namespace = "devops"
   name      = "chartmuseum"

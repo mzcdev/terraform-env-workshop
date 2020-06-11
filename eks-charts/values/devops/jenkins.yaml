@@ -4,22 +4,19 @@ master:
   adminUser: "admin"
   adminPassword: "password"
 
-  resources:
-    requests:
-      cpu: 1000m
-      memory: 2Gi
-    limits:
-      cpu: 1200m
-      memory: 3Gi
-
-  sidecars:
-    configAutoReload:
-      enabled: true
+  # resources:
+  #   requests:
+  #     cpu: 1000m
+  #     memory: 1Gi
+  #   limits:
+  #     cpu: 2000m
+  #     memory: 3Gi
 
   # podAnnotations:
   #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
   hostNetworking: true
+
   javaOpts: "-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul"
 
   ingress:
@@ -35,40 +32,104 @@ master:
         hosts:
           - "jenkins.demo.mzdev.be"
 
-  overwritePlugins: true
   installPlugins:
     # https://github.com/helm/charts/blob/master/stable/jenkins/values.yaml
     - kubernetes:latest
     - workflow-job:latest
     - workflow-aggregator:latest
     - credentials-binding:latest
-    # https://plugins.jenkins.io/blueocean
-    - blueocean:latest
-    # https://plugins.jenkins.io/kubernetes-credentials-provider
-    - kubernetes-credentials-provider:latest
-    # https://plugins.jenkins.io/pipeline-github-lib
-    - pipeline-github-lib:latest
-    # https://plugins.jenkins.io/active-directory
-    - active-directory:latest
-    # https://plugins.jenkins.io/role-strategy
-    - role-strategy:latest
-    # https://plugins.jenkins.io/ldap
-    - ldap:latest
-    # https://plugins.jenkins.io/google-login
-    - google-login:latest
-    # https://plugins.jenkins.io/oic-auth
-    - oic-auth:latest
+    - git:latest
+    - configuration-as-code:latest
 
-  securityRealm: |-
-    <securityRealm class="org.jenkinsci.plugins.oic.OicSecurityRealm" plugin="oic-auth@1.0">
-      <clientId>jenkins</clientId>
-      <clientSecret>f76f3359-4be2-45dd-aba9-6f5204e62438</clientSecret>
-      <tokenServerUrl>https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/token</tokenServerUrl>
-      <authorizationServerUrl>https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/auth</authorizationServerUrl>
-      <userInfoServerUrl>https://keycloak.demo.mzdev.be/auth/realms/demo/protocol/openid-connect/userinfo</userInfoServerUrl>
-      <userNameField>preferred_username</userNameField>
-      <scopes>openid email</scopes>
-    </securityRealm>
+  # https://plugins.jenkins.io/
+  additionalPlugins:
+    - authorize-project:latest
+    - blueocean:latest
+    - generic-webhook-trigger:latest
+    - keycloak:latest
+    - kubernetes-credentials-provider:latest
+    - pipeline-github-lib:latest
+    - prometheus:latest
+    - role-strategy:latest
+
+  overwritePlugins: true
+
+  prometheus:
+    enabled: true
+    serviceMonitorAdditionalLabels:
+      release: prometheus-operator
+
+  # https://plugins.jenkins.io/configuration-as-code/
+  JCasC:
+    enabled: true
+    defaultConfig: true
+
+    configScripts:
+      welcome-message: |-
+        jenkins:
+          systemMessage: Welcome to our CI\CD server.  This Jenkins is configured and managed 'as code'.
+
+      # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/keycloak/README.md
+      keycloak-json: |-
+        unclassified:
+          keycloakSecurityRealm:
+            keycloakJson: |-
+              {
+                "realm": "demo",
+                "auth-server-url": "https://keycloak.demo.mzdev.be/auth/",
+                "ssl-required": "external",
+                "resource": "jenkins",
+                "credentials": {
+                  "secret": "f76f3359-4be2-45dd-aba9-6f5204e62438"
+                },
+                "confidential-port": 0
+              }
+
+      # # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/jobs/multibranch-github.yaml
+      # jobs: |-
+      #   jobs:
+      #     - script: >
+      #         multibranchPipelineJob('sample-node') {
+      #           branchSources {
+      #             github {
+      #               // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
+      #               id('100') // IMPORTANT: use a constant and unique identifier
+      #               // scanCredentialsId('github')
+      #               repoOwner('nalbam')
+      #               repository('sample-node')
+      #               // apiUri('http://my-github-server/api/v3') // Optional, needed for private github enterprise servers
+      #             }
+      #           }
+      #           orphanedItemStrategy {
+      #             discardOldItems {
+      #               numToKeep(15)
+      #             }
+      #           }
+      #         }
+
+    # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/keycloak/README.md
+    securityRealm: |-
+      keycloak
+
+    # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/role-strategy-auth/README.md
+    authorizationStrategy: |-
+      roleBased:
+        roles:
+          global:
+            - name: "admin"
+              description: "Administrators"
+              permissions:
+                - "Overall/Administer"
+              assignments:
+                - "admin"
+                - "jyyu@mz.co.kr"
+            - name: "readonly"
+              description: "Read-only users"
+              permissions:
+                - "Overall/Read"
+                - "Job/Read"
+              assignments:
+                - "authenticated"
 
   jobs:
     sample-node: |-
@@ -101,7 +162,7 @@ master:
           <data>
             <jenkins.branch.BranchSource>
               <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.2.2">
-                <id>0d7f6197-6872-4bcc-a63d-5b5cb27ede76</id>
+                <id>sample-node</id>
                 <remote>https://github.com/nalbam/sample-node</remote>
                 <credentialsId></credentialsId>
                 <traits>
@@ -113,19 +174,23 @@ master:
               </strategy>
             </jenkins.branch.BranchSource>
           </data>
-          <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
         </sources>
         <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
-          <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
           <scriptPath>Jenkinsfile</scriptPath>
         </factory>
       </org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
-
-rbac:
-  create: true
-  readSecrets: true
 
 persistence:
   enabled: true
   storageClass: default
   size: 20Gi
+
+rbac:
+  create: true
+  readSecrets: true
+
+serviceAccount:
+  create: true
+
+serviceAccountAgent:
+  create: true
