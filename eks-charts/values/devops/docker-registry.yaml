@@ -4,13 +4,13 @@ podAnnotations:
   # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
   iam.amazonaws.com/role: "eks-demo-worker-bucket"
 
-storage: s3
+# storage: s3
 
-s3:
-  region: "ap-northeast-2"
-  bucket: "eks-demo-registry-demo"
-  encrypt: "false"
-  secure: "false"
+# s3:
+#   region: "ap-northeast-2"
+#   bucket: "eks-demo-registry-demo"
+#   encrypt: "false"
+#   secure: "false"
 
 secrets:
   haSharedSecret: "secret-string-287463"

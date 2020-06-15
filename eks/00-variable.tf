@@ -100,23 +100,13 @@ variable "key_path" {
 variable "buckets" {
   description = "S3 Bucket 을 생성 한다면 목록으로 입력 합니다."
   default = [
-    "eks-demo-argo-demo",
-    "eks-demo-chartmuseum-demo",
-    "eks-demo-registry-demo",
-    "eks-demo-vault-demo",
-    "eks-demo-harbor-demo",
+    # "eks-demo-argo-demo",
+    # "eks-demo-chartmuseum-demo",
+    # "eks-demo-registry-demo",
   ]
 }
 
 variable "launch_efs_enable" {
   description = "EFS 스토리지를 생성 할지 선택 합니다."
   default     = true
-}
-
-variable "host_root" {
-  default = "mzdev.be"
-}
-
-variable "host_open" {
-  default = "*.demo.mzdev.be"
 }

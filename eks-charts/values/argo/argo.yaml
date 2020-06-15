@@ -26,8 +26,7 @@ server:
 
 useDefaultArtifactRepo: true
 useStaticCredentials: false
-
-artifactRepository:
-  s3:
-    bucket: "eks-demo-argo-demo"
-    endpoint: s3.amazonaws.com
+# artifactRepository:
+#   s3:
+#     bucket: "eks-demo-argo-demo"
+#     endpoint: s3.amazonaws.com
