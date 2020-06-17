@@ -82,35 +82,3 @@ resource "helm_release" "prometheus-alert-rules" {
     helm_release.prometheus-operator,
   ]
 }
-
-# resource "helm_release" "datadog" {
-#   repository = "https://kubernetes-charts.storage.googleapis.com"
-#   chart      = "datadog"
-#   version    = "2.3.9" # helm chart version stable/datadog
-
-#   namespace = "monitor"
-#   name      = "datadog"
-
-#   values = [
-#     file("./values/monitor/datadog.yaml")
-#   ]
-
-#   wait = false
-
-#   create_namespace = true
-
-#   set {
-#     name  = "datadog.apiKey"
-#     value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-#   }
-
-#   set {
-#     name  = "datadog.appKey"
-#     value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-#   }
-
-#   set {
-#     name  = "datadog.clusterName"
-#     value = local.eks_name
-#   }
-# }

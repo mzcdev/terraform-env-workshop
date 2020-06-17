@@ -73,21 +73,6 @@ resource "helm_release" "k8s-spot-termination-handler" {
   }
 }
 
-# resource "helm_release" "kube-state-metrics" {
-#   repository = "https://kubernetes-charts.storage.googleapis.com"
-#   chart      = "kube-state-metrics"
-#   version    = "2.8.8" # helm chart version stable/kube-state-metrics
-
-#   namespace = "kube-system"
-#   name      = "kube-state-metrics"
-
-#   wait = false
-
-#   values = [
-#     file("./values/kube-system/kube-state-metrics.yaml")
-#   ]
-# }
-
 resource "helm_release" "kube2iam" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "kube2iam"
