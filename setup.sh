@@ -21,12 +21,20 @@ else
 fi
 
 # create s3 bucket
-aws s3 mb s3://${BUCKET} --region ${REGION}
+COUNT=$(aws s3 ls | grep ${BUCKET} | wc -l | xargs)
+if [ "x${COUNT}" == "x0" ]; then
+    echo "$ aws s3 mb s3://${BUCKET} --region ${REGION}"
+    aws s3 mb s3://${BUCKET} --region ${REGION}
+fi
 
 # create dynamodb table
-aws dynamodb create-table \
-    --table-name ${BUCKET} \
-    --attribute-definitions AttributeName=LockID,AttributeType=S \
-    --key-schema AttributeName=LockID,KeyType=HASH \
-    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-    --region ${REGION}
+COUNT=$(aws dynamodb list-tables | jq -r .TableNames | grep ${BUCKET} | wc -l | xargs)
+if [ "x${COUNT}" == "x0" ]; then
+    echo "$ aws dynamodb create-table --table-name ${BUCKET}"
+    aws dynamodb create-table \
+        --table-name ${BUCKET} \
+        --attribute-definitions AttributeName=LockID,AttributeType=S \
+        --key-schema AttributeName=LockID,KeyType=HASH \
+        --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+        --region ${REGION} | jq .
+fi
