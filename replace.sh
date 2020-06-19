@@ -14,7 +14,7 @@ echo "REGION=${REGION}"
 echo "BUCKET=${BUCKET}"
 
 if [ "${OS_NAME}" == "darwin" ]; then
-    find . -name '*.tf' -exec sed -i '' -e "s/terraform-workshop-mzcdev/${BUCKET}/g" {} \;
+    find . -name '*.tf' -exec sed -i '' -e "s/terraform-workshop-[[:alnum:]]/${BUCKET}/g" {} \;
 else
-    find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-mzcdev/${BUCKET}/g" {} \;
+    find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-[[:alnum:]]/${BUCKET}/g" {} \;
 fi
