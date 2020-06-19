@@ -1,15 +1,23 @@
 # terraform-env-workshop
 
-## requirements
+## clone
 
 ```bash
-# variable
-export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
+git clone https://github.com/mzcdev/terraform-env-workshop
 
-export REGION="ap-northeast-2"
-export BUCKET="terraform-workshop-${ACCOUNT_ID}"
+cd terraform-env-workshop
+```
 
+## setup
+
+```bash
 ./setup.sh
+
+# # variable
+# export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
+
+# export REGION="ap-northeast-2"
+# export BUCKET="terraform-workshop-${ACCOUNT_ID}"
 
 # # replace workshop name
 # find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-mzcdev/${BUCKET}/g" {} \;
@@ -26,30 +34,12 @@ export BUCKET="terraform-workshop-${ACCOUNT_ID}"
 #     --region ${REGION}
 ```
 
-## clone
-
-```bash
-git clone https://github.com/mzcdev/terraform-env-workshop
-```
-
 ## usage
-
-### lambda api
-
-```bash
-cd terraform-env-workshop/lambda
-
-terraform init
-terraform plan
-terraform apply
-
-curl -sL -X POST -d "{\"data\":\"ok\"}" ${invoke_url}/demo | jq .
-```
 
 ### vpc
 
 ```bash
-cd terraform-env-workshop/vpc
+cd ./vpc
 
 terraform init
 terraform plan
@@ -59,7 +49,7 @@ terraform apply
 ### bastion
 
 ```bash
-cd terraform-env-workshop/bastion
+cd ./bastion
 
 terraform init
 terraform plan
@@ -69,11 +59,41 @@ terraform apply
 ### eks
 
 ```bash
-cd terraform-env-workshop/eks
+cd ./eks
 
 terraform init
 terraform plan
 terraform apply
 
-kubectl get nodes
+kubectl get no
+kubectl get ns
+kubectl get pod --all-namespaces
+kubectl get ing --all-namespaces
+```
+
+### eks-charts
+
+```bash
+cd ./eks-charts
+
+terraform init
+terraform plan
+terraform apply
+
+kubectl get no
+kubectl get ns
+kubectl get pod --all-namespaces
+kubectl get ing --all-namespaces
+```
+
+### lambda api
+
+```bash
+cd ./lambda
+
+terraform init
+terraform plan
+terraform apply
+
+curl -sL -X POST -d "{\"data\":\"ok\"}" ${invoke_url}/demo | jq .
 ```
