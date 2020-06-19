@@ -4,8 +4,12 @@
 
 ```bash
 # variable
+export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
+
 export REGION="ap-northeast-2"
-export BUCKET="terraform-workshop-mzcdev"
+export BUCKET="terraform-workshop-${ACCOUNT_ID}"
+
+find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-mzcdev/${BUCKET}/g" {} \;
 
 # create s3 bucket
 aws s3 mb s3://${BUCKET} --region ${REGION}
