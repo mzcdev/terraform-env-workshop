@@ -5,7 +5,7 @@
 ```bash
 # variable
 export REGION="ap-northeast-2"
-export BUCKET="terraform-workshop-seoul"
+export BUCKET="terraform-workshop-mzcdev"
 
 # create s3 bucket
 aws s3 mb s3://${BUCKET} --region ${REGION}

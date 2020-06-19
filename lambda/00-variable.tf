@@ -1,3 +1,4 @@
+# variable
 
 variable "region" {
   description = "생성될 리전."
@@ -44,7 +45,7 @@ variable "timeout" {
 variable "s3_bucket" {
   description = "배포 패키지가 저장될 버켓 이름."
   type        = string
-  default     = "terraform-workshop-seoul"
+  default     = "terraform-workshop-mzcdev"
 }
 
 variable "s3_source" {
