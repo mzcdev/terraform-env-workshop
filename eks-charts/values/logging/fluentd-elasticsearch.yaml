@@ -1,0 +1,11 @@
+nameOverride: fluentd-elasticsearch
+
+elasticsearch:
+  auth:
+    enabled: false
+    user: "username"
+    password: "password"
+  includeTagKey: true
+  setOutputHostEnvVar: true
+  # If setOutputHostEnvVar is false this value is ignored
+  hosts: ["elasticsearch-client:9200"]

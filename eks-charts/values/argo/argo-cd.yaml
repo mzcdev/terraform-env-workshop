@@ -2,6 +2,11 @@ nameOverride: argocd
 
 installCRDs: true
 
+global:
+  image:
+    repository: argoproj/argocd
+    tag: v1.5.8
+
 controller:
   metrics:
     enabled: true
@@ -9,8 +14,8 @@ controller:
       enabled: true
       additionalLabels:
         release: prometheus-operator
-  # podAnnotations:
-  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
 server:
   extraArgs:
@@ -22,8 +27,8 @@ server:
       enabled: true
       additionalLabels:
         release: prometheus-operator
-  # podAnnotations:
-  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
   ingress:
     enabled: true
@@ -62,11 +67,9 @@ server:
         - openid
         - email
         - profile
-        - roles
         - groups
 
-  # https://argoproj.github.io/argo-cd/operator-manual/user-management/#existing-oidc-provider
-  # https://argoproj.github.io/argo-cd/operator-manual/user-management/auth0/
+  # https://argoproj.github.io/argo-cd/operator-manual/user-management/keycloak/
 
   rbacConfig:
     policy.default: role:readonly

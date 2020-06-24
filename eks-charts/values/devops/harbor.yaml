@@ -25,17 +25,17 @@ harborAdminPassword: "password"
 
 core:
   podAnnotations:
-    # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
     iam.amazonaws.com/role: "eks-demo-worker-bucket"
 
 registry:
   podAnnotations:
-    # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
     iam.amazonaws.com/role: "eks-demo-worker-bucket"
 
 chartmuseum:
   podAnnotations:
-    # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
     iam.amazonaws.com/role: "eks-demo-worker-bucket"
 
 persistence:

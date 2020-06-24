@@ -24,13 +24,13 @@ output "eks_endpoint" {
 #   value = module.eks.token
 # }
 
-# output "eks_oidc_issuer" {
-#   value = module.eks.oidc_issuer
-# }
+output "eks_oidc_issuer" {
+  value = module.eks.oidc_issuer
+}
 
-# output "eks_oidc_issuer_arn" {
-#   value = module.eks.oidc_issuer_arn
-# }
+output "eks_oidc_issuer_arn" {
+  value = module.eks.oidc_issuer_arn
+}
 
 output "eks_iam_role_arn" {
   value = module.eks.iam_role_arn

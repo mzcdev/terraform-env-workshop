@@ -12,5 +12,13 @@ host:
   iptables: true
   interface: eni+
 
+# prometheus:
+#   service:
+#     enabled: true
+#   serviceMonitor:
+#     enabled: true
+#     labels:
+#       release: prometheus-operator
+
 rbac:
   create: true

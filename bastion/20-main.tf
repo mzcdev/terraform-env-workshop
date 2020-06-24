@@ -1,7 +1,7 @@
 # bastion
 
 module "bastion" {
-  source = "github.com/mzcdev/terraform-aws-bastion?ref=v0.12.15"
+  source = "github.com/mzcdev/terraform-aws-bastion?ref=v0.12.16"
 
   name = var.name
 

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Config
+clusters:
+  - name: "cluster"
+    cluster:
+      server: "${cluster_url}"
+      certificate-authority-data: "${cluster_auth_data}"
+      api-version: v1
+users:
+  - name: "user"
+    user:
+      token: "${cluster_token}"
+contexts:
+  - name: "eks"
+    context:
+      user: "user"
+      cluster: "cluster"
+current-context: "eks"

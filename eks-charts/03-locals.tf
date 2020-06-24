@@ -13,3 +13,12 @@ locals {
 
   storage_class = local.efs_id == "" ? "default" : "efs"
 }
+
+# locals {
+#   kube_template = "${path.module}/template/kube-config.yaml"
+# }
+
+# resource "local_file" "kubeconfig" {
+#   content  = data.template_file.kubeconfig.rendered
+#   filename = "${path.module}/.kube/config"
+# }

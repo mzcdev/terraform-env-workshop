@@ -17,7 +17,7 @@ variable "kubernetes_version" {
 
 variable "cluster_log_types" {
   description = "CloudWatch 로그를 설정 합니다."
-  default     = ["api", "audit", "authenticator"]
+  default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
   # api, audit, authenticator, controllerManager, scheduler
 }
 
@@ -56,12 +56,12 @@ variable "associate_public_ip_address" {
 
 variable "instance_type" {
   description = "워커 노드 인스턴스 타입"
-  default     = "m5.xlarge"
+  default     = "m5.large"
 }
 
 variable "mixed_instances" {
   description = "워커 노드 추가 인스턴스 타입 목록"
-  default     = ["c5.xlarge", "r5.xlarge"]
+  default     = ["c5.large", "r5.large"]
 }
 
 variable "volume_type" {
@@ -100,9 +100,9 @@ variable "key_path" {
 variable "buckets" {
   description = "S3 Bucket 을 생성 한다면 목록으로 입력 합니다."
   default = [
-    # "eks-demo-argo-demo",
-    # "eks-demo-chartmuseum-demo",
-    # "eks-demo-registry-demo",
+    "eks-demo-argo-demo",
+    "eks-demo-chartmuseum-demo",
+    "eks-demo-registry-demo",
   ]
 }
 

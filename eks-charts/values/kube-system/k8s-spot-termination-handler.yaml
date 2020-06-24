@@ -3,8 +3,9 @@ nameOverride: k8s-spot-termination-handler
 clusterName: "eks-demo"
 
 podAnnotations:
+  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
   iam.amazonaws.com/role: "eks-demo-worker-asg"
 
 detachAsg: false
 
-slackUrl: ""
+slackUrl: "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"

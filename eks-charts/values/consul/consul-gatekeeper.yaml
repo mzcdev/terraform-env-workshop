@@ -1,0 +1,22 @@
+nameOverride: consul-gatekeeper
+
+discoveryURL: https://keycloak.demo.mzdev.be/auth/realms/demo
+
+upstreamURL: http://consul-ui.consul.svc.cluster.local:8500
+
+ClientID: consul
+ClientSecret: 85a70f6c-9577-4a44-b7b1-5231cb03b8f7
+
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
+  hosts:
+    - "consul.demo.mzdev.be"
+  tls:
+    - secretName: consul-tls
+      hosts:
+        - "consul.demo.mzdev.be"

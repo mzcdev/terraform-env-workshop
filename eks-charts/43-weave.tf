@@ -12,8 +12,6 @@ resource "helm_release" "weave-scope" {
     file("./values/weave/weave-scope.yaml")
   ]
 
-  wait = false
-
   create_namespace = true
 }
 
@@ -32,4 +30,9 @@ resource "helm_release" "weave-scope-gatekeeper" {
   wait = false
 
   create_namespace = true
+
+  depends_on = [
+    helm_release.weave-scope,
+    helm_release.keycloak,
+  ]
 }

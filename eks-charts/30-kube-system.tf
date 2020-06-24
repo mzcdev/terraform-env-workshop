@@ -69,7 +69,7 @@ resource "helm_release" "k8s-spot-termination-handler" {
 
   set {
     name  = "slackUrl"
-    value = "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+    value = "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
   }
 }
 
@@ -107,3 +107,18 @@ resource "helm_release" "metrics-server" {
 
   wait = false
 }
+
+# resource "helm_release" "kube-state-metrics" {
+#   repository = "https://kubernetes-charts.storage.googleapis.com"
+#   chart      = "kube-state-metrics"
+#   version    = "2.8.10" # helm chart version stable/kube-state-metrics
+
+#   namespace = "kube-system"
+#   name      = "kube-state-metrics"
+
+#   wait = false
+
+#   values = [
+#     file("./values/kube-system/kube-state-metrics.yaml")
+#   ]
+# }

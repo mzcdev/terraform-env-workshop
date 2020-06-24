@@ -3,7 +3,7 @@
 resource "helm_release" "grafana" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "grafana"
-  version    = "5.1.4" # helm chart version stable/grafana
+  version    = "5.2.1" # helm chart version stable/grafana
 
   namespace = "monitor"
   name      = "grafana"
@@ -46,7 +46,7 @@ resource "helm_release" "prometheus-adapter" {
 resource "helm_release" "prometheus-operator" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "prometheus-operator"
-  version    = "8.14.0" # helm chart version stable/prometheus-operator
+  version    = "8.15.5" # helm chart version stable/prometheus-operator
 
   namespace = "monitor"
   name      = "prometheus-operator"
@@ -58,6 +58,11 @@ resource "helm_release" "prometheus-operator" {
   set {
     name  = "prometheus.prometheusSpec.storageSpec.volumeClaimTemplate.spec.storageClassName"
     value = local.storage_class
+  }
+
+  set {
+    name  = "alertmanager.config.global.slack_api_url"
+    value = "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
   }
 
   create_namespace = true
@@ -78,7 +83,43 @@ resource "helm_release" "prometheus-alert-rules" {
     file("./values/monitor/prometheus-alert-rules.yaml")
   ]
 
+  wait = false
+
+  create_namespace = true
+
   depends_on = [
     helm_release.prometheus-operator,
   ]
 }
+
+# resource "helm_release" "datadog" {
+#   repository = "https://kubernetes-charts.storage.googleapis.com"
+#   chart      = "datadog"
+#   version    = "2.3.10" # helm chart version stable/datadog
+
+#   namespace = "monitor"
+#   name      = "datadog"
+
+#   values = [
+#     file("./values/monitor/datadog.yaml")
+#   ]
+
+#   wait = false
+
+#   create_namespace = true
+
+#   set {
+#     name  = "datadog.apiKey"
+#     value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#   }
+
+#   set {
+#     name  = "datadog.appKey"
+#     value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#   }
+
+#   set {
+#     name  = "datadog.clusterName"
+#     value = local.eks_name
+#   }
+# }

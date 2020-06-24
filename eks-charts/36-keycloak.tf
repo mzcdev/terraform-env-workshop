@@ -40,11 +40,9 @@ resource "helm_release" "keycloak" {
     value = local.storage_class
   }
 
-  wait = false
-
   depends_on = [
-    kubernetes_namespace.keycloak,
     kubernetes_secret.keycloak-realm,
     helm_release.efs-provisioner,
+    helm_release.prometheus-operator,
   ]
 }

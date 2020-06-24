@@ -8,8 +8,8 @@ server:
     enabled: true
     storageClass: default
     size: 8Gi
-  # podAnnotations:
-  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
 alertmanager:
   enabled: false
@@ -126,7 +126,7 @@ serverFiles:
 alertmanagerFiles:
   alertmanager.yml:
     global:
-      slack_api_url: "https://hooks.slack.com/services/XXXXX/XXXXX/XXXXX"
+      slack_api_url: "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
 
     route:
       group_wait: 30s

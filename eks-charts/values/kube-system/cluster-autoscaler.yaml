@@ -6,6 +6,10 @@ autoDiscovery:
 
 awsRegion: "ap-northeast-2"
 
+podAnnotations:
+  cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  iam.amazonaws.com/role: "eks-demo-worker-asg"
+
 extraArgs:
   v: 4
   logtostderr: true
@@ -13,9 +17,6 @@ extraArgs:
   scale-down-utilization-threshold: 0.6
   skip-nodes-with-local-storage: false
   skip-nodes-with-system-pods: false
-
-podAnnotations:
-  iam.amazonaws.com/role: "eks-demo-worker-asg"
 
 sslCertPath: /etc/ssl/certs/ca-bundle.crt
 

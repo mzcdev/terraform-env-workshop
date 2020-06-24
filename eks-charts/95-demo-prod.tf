@@ -10,6 +10,7 @@ resource "kubernetes_namespace" "demo-prod" {
   }
 }
 
+# for argo-rollouts
 resource "helm_release" "demo-prod-http-benchmark" {
   repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "raw"

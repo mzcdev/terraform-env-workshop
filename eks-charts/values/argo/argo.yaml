@@ -2,14 +2,23 @@ nameOverride: argo
 
 installCRD: true
 
+init:
+  serviceAccount: ""
+
 controller:
   podAnnotations:
-    # cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
     iam.amazonaws.com/role: "eks-demo-worker-bucket"
+  serviceMonitor:
+    enabled: true
+    additionalLabels:
+      release: prometheus-operator
+  workflowNamespaces:
+    - default
 
 server:
-  # podAnnotations:
-  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  podAnnotations:
+    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
   ingress:
     enabled: false
     annotations:
@@ -26,7 +35,8 @@ server:
 
 useDefaultArtifactRepo: true
 useStaticCredentials: false
-# artifactRepository:
-#   s3:
-#     bucket: "eks-demo-argo-demo"
-#     endpoint: s3.amazonaws.com
+
+artifactRepository:
+  s3:
+    bucket: "eks-demo-argo-demo"
+    endpoint: s3.amazonaws.com

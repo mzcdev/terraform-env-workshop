@@ -32,7 +32,7 @@ variable "enable_nat_gateway" {
 
 variable "single_nat_gateway" {
   description = "Private Subnet 마다 NAT Gateway 을 연결 할지 선택 합니다."
-  default     = false
+  default     = true
 }
 
 variable "public_subnets" {

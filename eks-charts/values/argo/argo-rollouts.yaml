@@ -4,4 +4,4 @@ installCRDs: true
 
 controller:
   image:
-    tag: v0.8.2
+    tag: v0.8.3
