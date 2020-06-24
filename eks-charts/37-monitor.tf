@@ -110,12 +110,12 @@ resource "helm_release" "prometheus-alert-rules" {
 
 #   set {
 #     name  = "datadog.apiKey"
-#     value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#     value = "REPLACEME"
 #   }
 
 #   set {
 #     name  = "datadog.appKey"
-#     value = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#     value = "REPLACEME"
 #   }
 
 #   set {
