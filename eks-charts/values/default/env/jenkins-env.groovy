@@ -7,7 +7,7 @@ def cluster = "eks-demo"
 @Field
 def base_domain = "demo.spic.me"
 @Field
-def slack_token = "T03FUG4UB/B8RQJGNR0/EXulqWVCdEV2RoEzhcA8AzpX"
+def slack_token = "REPLACEME/REPLACEME/REPLACEME"
 @Field
 def jenkins = "jenkins.demo.spic.me"
 @Field
