@@ -3,7 +3,7 @@
 resource "helm_release" "argo" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo"
-  version    = "0.9.5" # helm chart version argo/argo
+  version    = var.argo_argo
 
   namespace = "argo"
   name      = "argo"
@@ -11,6 +11,16 @@ resource "helm_release" "argo" {
   values = [
     file("./values/argo/argo.yaml")
   ]
+
+  set {
+    name  = "artifactRepository.s3.bucket"
+    value = "${var.eks_name}-argo-${local.account_id}"
+  }
+
+  set {
+    name  = "artifactRepository.s3.region"
+    value = var.region
+  }
 
   create_namespace = true
 
@@ -22,7 +32,7 @@ resource "helm_release" "argo" {
 # resource "helm_release" "argo-events" {
 #   repository = "https://argoproj.github.io/argo-helm"
 #   chart      = "argo-events"
-#   version    = "0.14.0" # helm chart version argo/argo-events
+#   version    = var.argo_argo_events
 
 #   namespace = "argo-events"
 #   name      = "argo-events"
@@ -39,7 +49,7 @@ resource "helm_release" "argo" {
 resource "helm_release" "argo-gatekeeper" {
   repository = "https://gabibbo97.github.io/charts/"
   chart      = "keycloak-gatekeeper"
-  version    = "3.3.1" # helm chart version gabibbo97/keycloak-gatekeeper
+  version    = var.gabibbo97_keycloak_gatekeeper
 
   namespace = "argo"
   name      = "argo-gatekeeper"

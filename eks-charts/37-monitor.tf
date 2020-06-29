@@ -3,7 +3,7 @@
 resource "helm_release" "grafana" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "grafana"
-  version    = "5.2.1" # helm chart version stable/grafana
+  version    = var.stable_grafana
 
   namespace = "monitor"
   name      = "grafana"
@@ -29,7 +29,7 @@ resource "helm_release" "grafana" {
 resource "helm_release" "prometheus-adapter" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "prometheus-adapter"
-  version    = "2.3.1" # helm chart version stable/prometheus-adapter
+  version    = var.stable_prometheus_adapter
 
   namespace = "monitor"
   name      = "prometheus-adapter"
@@ -46,7 +46,7 @@ resource "helm_release" "prometheus-adapter" {
 resource "helm_release" "prometheus-operator" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "prometheus-operator"
-  version    = "8.15.5" # helm chart version stable/prometheus-operator
+  version    = var.stable_prometheus_operator
 
   namespace = "monitor"
   name      = "prometheus-operator"
@@ -62,7 +62,7 @@ resource "helm_release" "prometheus-operator" {
 
   set {
     name  = "alertmanager.config.global.slack_api_url"
-    value = "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
+    value = "https://hooks.slack.com/services/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"
   }
 
   create_namespace = true
@@ -95,7 +95,7 @@ resource "helm_release" "prometheus-alert-rules" {
 # resource "helm_release" "datadog" {
 #   repository = "https://kubernetes-charts.storage.googleapis.com"
 #   chart      = "datadog"
-#   version    = "2.3.10" # helm chart version stable/datadog
+#   version    = var.stable_datadog
 
 #   namespace = "monitor"
 #   name      = "datadog"
@@ -120,6 +120,6 @@ resource "helm_release" "prometheus-alert-rules" {
 
 #   set {
 #     name  = "datadog.clusterName"
-#     value = local.eks_name
+#     value = var.eks_name
 #   }
 # }

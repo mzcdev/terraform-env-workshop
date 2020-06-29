@@ -26,7 +26,7 @@ resource "kubernetes_secret" "keycloak-realm" {
 resource "helm_release" "keycloak" {
   repository = "https://codecentric.github.io/helm-charts"
   chart      = "keycloak"
-  version    = "8.2.2" # helm chart version codecentric/keycloak
+  version    = var.codecentric_keycloak
 
   namespace = "keycloak"
   name      = "keycloak"

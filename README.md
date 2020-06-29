@@ -13,6 +13,8 @@ cd terraform-env-workshop
 ```bash
 ./setup.sh
 
+export TF_VAR_host_name="*.demo.spic.me"
+
 # # variable
 # export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
 
@@ -60,6 +62,8 @@ terraform apply
 
 ```bash
 cd ./eks
+
+./replace.py
 
 terraform init
 terraform plan

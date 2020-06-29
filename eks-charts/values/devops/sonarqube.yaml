@@ -3,19 +3,19 @@ fullnameOverride: sonarqube
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
     ingress.kubernetes.io/proxy-body-size: "0"
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "0"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - name: "sonarqube.demo.mzdev.be"
+    - name: "sonarqube.demo.spic.me"
       path: /
   tls:
     - secretName: sonarqube-tls
       hosts:
-        - "sonarqube.demo.mzdev.be"
+        - "sonarqube.demo.spic.me"
 
 annotations:
   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"

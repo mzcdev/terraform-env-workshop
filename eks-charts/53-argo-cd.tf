@@ -3,7 +3,7 @@
 resource "helm_release" "argo-rollouts" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-rollouts"
-  version    = "0.3.0" # helm chart version argo/argo-rollouts
+  version    = var.argo_argo_rollouts
 
   namespace = "argo-rollouts"
   name      = "argo-rollouts"
@@ -18,7 +18,7 @@ resource "helm_release" "argo-rollouts" {
 resource "helm_release" "argo-cd" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
-  version    = "2.3.6" # helm chart version argo/argo-cd
+  version    = var.argo_argo_cd
 
   namespace = "argo-cd"
   name      = "argocd"

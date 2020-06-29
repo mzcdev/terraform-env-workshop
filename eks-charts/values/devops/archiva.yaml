@@ -2,14 +2,14 @@ nameOverride: archiva
 
 proxy:
   enabled: true
-  hostname: "archiva.demo.mzdev.be"
+  hostname: "archiva.demo.spic.me"
   proto: https
   pathPrefix: /
 
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
     ingress.kubernetes.io/proxy-body-size: "0"
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "0"

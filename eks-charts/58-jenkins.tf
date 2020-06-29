@@ -3,7 +3,7 @@
 resource "helm_release" "jenkins" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "jenkins"
-  version    = "2.1.0" # helm chart version stable/jenkins
+  version    = var.stable_jenkins
 
   namespace = "jenkins"
   name      = "jenkins"

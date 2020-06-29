@@ -33,7 +33,7 @@ persistence:
 
 nexusProxy:
   env:
-    nexusHttpHost: "nexus.demo.mzdev.be"
+    nexusHttpHost: "nexus.demo.spic.me"
 
 nexusBackup:
   enabled: false
@@ -46,7 +46,7 @@ nexusBackup:
 ingress:
   enabled: true
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    cert-manager.io/cluster-issuer: "letsencrypt-issuer"
     ingress.kubernetes.io/proxy-body-size: "0"
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/proxy-body-size: "0"

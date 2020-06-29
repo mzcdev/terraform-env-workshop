@@ -3,7 +3,7 @@
 resource "helm_release" "cluster-overprovisioner" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "cluster-overprovisioner"
-  version    = "0.3.0" # helm chart version stable/cluster-overprovisioner
+  version    = var.stable_cluster_overprovisioner
 
   namespace = "default"
   name      = "cluster-overprovisioner"

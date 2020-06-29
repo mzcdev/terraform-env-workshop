@@ -2,9 +2,14 @@ nameOverride: cert-manager
 
 installCRDs: true
 
-rbac:
-  create: true
-
 ingressShim:
-  defaultIssuerName: letsencrypt-prod
+  defaultIssuerName: letsencrypt-issuer
   defaultIssuerKind: ClusterIssuer
+
+prometheus:
+  enabled: true
+  servicemonitor:
+    enabled: true
+    prometheusInstance: default
+    labels:
+      release: prometheus-operator

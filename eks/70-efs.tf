@@ -1,6 +1,6 @@
 # efs
 
-resource "aws_efs_file_system" "efs" {
+resource "aws_efs_file_system" "this" {
   count = var.launch_efs_enable ? 1 : 0
 
   creation_token = local.worker
@@ -12,10 +12,10 @@ resource "aws_efs_file_system" "efs" {
   }
 }
 
-resource "aws_efs_mount_target" "efs" {
+resource "aws_efs_mount_target" "this" {
   count = var.launch_efs_enable ? length(data.terraform_remote_state.vpc.outputs.private_subnet_ids) : 0
 
-  file_system_id = aws_efs_file_system.efs[0].id
+  file_system_id = aws_efs_file_system.this[0].id
 
   subnet_id = data.terraform_remote_state.vpc.outputs.private_subnet_ids[count.index]
 
@@ -57,5 +57,5 @@ resource "aws_security_group_rule" "worker-efs" {
 }
 
 output "efs_ids" {
-  value = aws_efs_file_system.efs.*.id
+  value = aws_efs_file_system.this.*.id
 }

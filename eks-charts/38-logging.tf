@@ -3,7 +3,7 @@
 # resource "helm_release" "fluentd-elasticsearch" {
 #   repository = "https://kiwigrid.github.io"
 #   chart      = "fluentd-elasticsearch"
-#   version    = "9.3.2" # helm chart version kiwigrid/fluentd-elasticsearch
+#   version    = var.kiwigrid_fluentd_elasticsearch
 
 #   namespace = "logging"
 #   name      = "fluentd-elasticsearch"

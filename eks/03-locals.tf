@@ -39,5 +39,9 @@ locals {
     },
   ]
 
-  nat_gateway_ips = data.terraform_remote_state.vpc.outputs.nat_gateway_ips
+  buckets = flatten([
+    for bucket in var.buckets : [
+      "${var.name}-${bucket}-${local.account_id}"
+    ]
+  ])
 }

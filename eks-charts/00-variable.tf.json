@@ -1,0 +1,112 @@
+{
+  "variable": {
+    "argo_argo": {
+      "default": "0.9.8", 
+      "description": "argo/argo"
+    }, 
+    "argo_argo_cd": {
+      "default": "2.5.0", 
+      "description": "argo/argo-cd"
+    }, 
+    "argo_argo_events": {
+      "default": "0.14.0", 
+      "description": "argo/argo-events"
+    }, 
+    "argo_argo_rollouts": {
+      "default": "0.3.0", 
+      "description": "argo/argo-rollouts"
+    }, 
+    "bitnami_external_dns": {
+      "default": "3.2.3", 
+      "description": "bitnami/external-dns"
+    }, 
+    "codecentric_keycloak": {
+      "default": "8.2.2", 
+      "description": "codecentric/keycloak"
+    }, 
+    "gabibbo97_keycloak_gatekeeper": {
+      "default": "3.3.1", 
+      "description": "gabibbo97/keycloak-gatekeeper"
+    }, 
+    "jetstack_cert_manager": {
+      "default": "v0.15.1", 
+      "description": "jetstack/cert-manager"
+    }, 
+    "kiwigrid_fluentd_elasticsearch": {
+      "default": "9.3.2", 
+      "description": "kiwigrid/fluentd-elasticsearch"
+    }, 
+    "oteemo_sonarqube": {
+      "default": "6.4.2", 
+      "description": "oteemo/sonarqube"
+    }, 
+    "oteemo_sonatype_nexus": {
+      "default": "2.3.0", 
+      "description": "oteemo/sonatype-nexus"
+    }, 
+    "stable_chartmuseum": {
+      "default": "2.13.0", 
+      "description": "stable/chartmuseum"
+    }, 
+    "stable_cluster_autoscaler": {
+      "default": "7.3.2", 
+      "description": "stable/cluster-autoscaler"
+    }, 
+    "stable_cluster_overprovisioner": {
+      "default": "0.3.0", 
+      "description": "stable/cluster-overprovisioner"
+    }, 
+    "stable_datadog": {
+      "default": "2.3.18", 
+      "description": "stable/datadog"
+    }, 
+    "stable_docker_registry": {
+      "default": "1.9.3", 
+      "description": "stable/docker-registry"
+    }, 
+    "stable_efs_provisioner": {
+      "default": "0.12.0", 
+      "description": "stable/efs-provisioner"
+    }, 
+    "stable_grafana": {
+      "default": "5.3.0", 
+      "description": "stable/grafana"
+    }, 
+    "stable_jenkins": {
+      "default": "2.1.0", 
+      "description": "stable/jenkins"
+    }, 
+    "stable_k8s_spot_termination_handler": {
+      "default": "1.4.9", 
+      "description": "stable/k8s-spot-termination-handler"
+    }, 
+    "stable_kube2iam": {
+      "default": "2.5.0", 
+      "description": "stable/kube2iam"
+    }, 
+    "stable_kube_state_metrics": {
+      "default": "2.8.11", 
+      "description": "stable/kube-state-metrics"
+    }, 
+    "stable_metrics_server": {
+      "default": "2.11.1", 
+      "description": "stable/metrics-server"
+    }, 
+    "stable_nginx_ingress": {
+      "default": "1.40.1", 
+      "description": "stable/nginx-ingress"
+    }, 
+    "stable_prometheus_adapter": {
+      "default": "2.4.0", 
+      "description": "stable/prometheus-adapter"
+    }, 
+    "stable_prometheus_operator": {
+      "default": "8.15.6", 
+      "description": "stable/prometheus-operator"
+    }, 
+    "stable_weave_scope": {
+      "default": "1.1.10", 
+      "description": "stable/weave-scope"
+    }
+  }
+}

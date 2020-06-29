@@ -5,7 +5,7 @@
 resource "helm_release" "kiali-gatekeeper" {
   repository = "https://gabibbo97.github.io/charts/"
   chart      = "keycloak-gatekeeper"
-  version    = "3.3.1" # helm chart version gabibbo97/keycloak-gatekeeper
+  version    = var.gabibbo97_keycloak_gatekeeper
 
   namespace = "istio-system"
   name      = "kiali-gatekeeper"
@@ -26,7 +26,7 @@ resource "helm_release" "kiali-gatekeeper" {
 resource "helm_release" "tracing-gatekeeper" {
   repository = "https://gabibbo97.github.io/charts/"
   chart      = "keycloak-gatekeeper"
-  version    = "3.3.1" # helm chart version gabibbo97/keycloak-gatekeeper
+  version    = var.gabibbo97_keycloak_gatekeeper
 
   namespace = "istio-system"
   name      = "tracing-gatekeeper"

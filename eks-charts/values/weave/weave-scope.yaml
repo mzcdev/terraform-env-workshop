@@ -4,15 +4,15 @@ weave-scope-frontend:
   ingress:
     enabled: false
     annotations:
-      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      cert-manager.io/cluster-issuer: "letsencrypt-issuer"
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
     paths:
       - /
     hosts:
-      - weave-scope.demo.mzdev.be
+      - weave-scope.demo.spic.me
     tls:
       - secretName: weave-scope-tls
         hosts:
-          - weave-scope.demo.mzdev.be
+          - weave-scope.demo.spic.me

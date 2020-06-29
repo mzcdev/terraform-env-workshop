@@ -7,16 +7,16 @@ keycloak:
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      cert-manager.io/cluster-issuer: "letsencrypt-issuer"
       kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
     hosts:
-      - "keycloak.demo.mzdev.be"
+      - "keycloak.demo.spic.me"
     tls:
       - secretName: keycloak-tls
         hosts:
-          - "keycloak.demo.mzdev.be"
+          - "keycloak.demo.spic.me"
 
   podAnnotations:
     cluster-autoscaler.kubernetes.io/safe-to-evict: "false"

@@ -6,7 +6,7 @@ variable "region" {
 }
 
 variable "name" {
-  description = "EKS 이름을 입력합니다."
+  description = "EKS Cluster 이름을 입력합니다."
   default     = "eks-demo"
 }
 
@@ -30,7 +30,7 @@ variable "allow_ip_address" {
   description = "접속 허용 IP 목록을 입력 합니다."
   default = [
     "10.10.1.0/24",     # bastion
-    "211.60.50.190/32", # echo "$(curl -sL icanhazip.com)/32"
+    # "211.60.50.190/32", # echo "$(curl -sL icanhazip.com)/32"
   ]
 }
 
@@ -65,19 +65,23 @@ variable "mixed_instances" {
 }
 
 variable "volume_type" {
-  default = "gp2"
+  description = "워커 노드 볼륨 타입"
+  default     = "gp2"
 }
 
 variable "volume_size" {
-  default = "32"
+  description = "워커 노드 볼륨 사이즈"
+  default     = "32"
 }
 
 variable "min" {
-  default = "1"
+  description = "워커 노드 오토스케일링그룹 최소값"
+  default     = "2"
 }
 
 variable "max" {
-  default = "5"
+  description = "워커 노드 오토스케일링그룹 최대값"
+  default     = "5"
 }
 
 variable "on_demand_base" {
@@ -94,19 +98,29 @@ variable "key_name" {
 }
 
 variable "key_path" {
-  default = ""
+  description = "Local 의 키를 사용한다면 경로를 입력 합니다."
+  default     = ""
 }
 
 variable "buckets" {
   description = "S3 Bucket 을 생성 한다면 목록으로 입력 합니다."
   default = [
-    "eks-demo-argo-demo",
-    "eks-demo-chartmuseum-demo",
-    "eks-demo-registry-demo",
+    "argo",
+    "chartmuseum",
+    "maven-repo",
+    "registry",
   ]
 }
 
 variable "launch_efs_enable" {
-  description = "EFS 스토리지를 생성 할지 선택 합니다."
+  description = "EFS 스토리지를 생성 여부를 선택 합니다."
   default     = true
 }
+
+# variable "host_root" {
+#   default = "spic.me"
+# }
+
+# variable "host_name" {
+#   default = "*.demo.spic.me"
+# }

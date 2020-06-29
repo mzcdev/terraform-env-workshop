@@ -3,7 +3,7 @@
 resource "helm_release" "cluster-autoscaler" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "cluster-autoscaler"
-  version    = "7.3.2" # helm chart version stable/cluster-autoscaler
+  version    = var.stable_cluster_autoscaler
 
   namespace = "kube-system"
   name      = "cluster-autoscaler"
@@ -16,19 +16,19 @@ resource "helm_release" "cluster-autoscaler" {
 
   set {
     name  = "awsRegion"
-    value = local.region
+    value = var.region
   }
 
   set {
     name  = "autoDiscovery.clusterName"
-    value = local.eks_name
+    value = var.eks_name
   }
 }
 
 resource "helm_release" "efs-provisioner" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "efs-provisioner"
-  version    = "0.11.1" # helm chart version stable/efs-provisioner
+  version    = var.stable_efs_provisioner
 
   namespace = "kube-system"
   name      = "efs-provisioner"
@@ -39,7 +39,7 @@ resource "helm_release" "efs-provisioner" {
 
   set {
     name  = "efsProvisioner.awsRegion"
-    value = local.region
+    value = var.region
   }
 
   set {
@@ -51,7 +51,7 @@ resource "helm_release" "efs-provisioner" {
 resource "helm_release" "k8s-spot-termination-handler" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "k8s-spot-termination-handler"
-  version    = "1.4.9" # helm chart version stable/k8s-spot-termination-handler
+  version    = var.stable_k8s_spot_termination_handler
 
   namespace = "kube-system"
   name      = "k8s-spot-termination-handler"
@@ -64,19 +64,19 @@ resource "helm_release" "k8s-spot-termination-handler" {
 
   set {
     name  = "clusterName"
-    value = local.eks_name
+    value = var.eks_name
   }
 
   set {
     name  = "slackUrl"
-    value = "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
+    value = "https://hooks.slack.com/services/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"
   }
 }
 
 resource "helm_release" "kube2iam" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "kube2iam"
-  version    = "2.5.0" # helm chart version stable/kube2iam
+  version    = var.stable_kube2iam
 
   namespace = "kube-system"
   name      = "kube2iam"
@@ -89,14 +89,14 @@ resource "helm_release" "kube2iam" {
 
   set {
     name  = "awsRegion"
-    value = local.region
+    value = var.region
   }
 }
 
 resource "helm_release" "metrics-server" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "metrics-server"
-  version    = "2.11.1" # helm chart version stable/metrics-server
+  version    = var.stable_metrics_server
 
   namespace = "kube-system"
   name      = "metrics-server"
@@ -111,7 +111,7 @@ resource "helm_release" "metrics-server" {
 # resource "helm_release" "kube-state-metrics" {
 #   repository = "https://kubernetes-charts.storage.googleapis.com"
 #   chart      = "kube-state-metrics"
-#   version    = "2.8.10" # helm chart version stable/kube-state-metrics
+#   version    = var.stable_kube_state_metrics
 
 #   namespace = "kube-system"
 #   name      = "kube-state-metrics"
