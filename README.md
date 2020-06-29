@@ -11,29 +11,13 @@ cd terraform-env-workshop
 ## setup
 
 ```bash
-./setup.sh
-
+# for ingress
 export TF_VAR_host_name="*.demo.spic.me"
 
-# # variable
-# export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
-
-# export REGION="ap-northeast-2"
-# export BUCKET="terraform-workshop-${ACCOUNT_ID}"
-
-# # replace workshop name
-# find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-mzcdev/${BUCKET}/g" {} \;
-
-# # create s3 bucket
-# aws s3 mb s3://${BUCKET} --region ${REGION}
-
-# # create dynamodb table
-# aws dynamodb create-table \
-#     --table-name ${BUCKET} \
-#     --attribute-definitions AttributeName=LockID,AttributeType=S \
-#     --key-schema AttributeName=LockID,KeyType=HASH \
-#     --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-#     --region ${REGION}
+# replace workshop name
+# create s3 bucket
+# create dynamodb table
+./setup.sh
 ```
 
 ## usage
