@@ -15,5 +15,5 @@ variable "host_name" {
 }
 
 variable "slack_url" {
-  default = "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
+  default = ""
 }
