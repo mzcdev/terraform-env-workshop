@@ -1806,8 +1806,8 @@
     "config": {
       "hostedDomain": "mz.co.kr",
       "syncMode": "IMPORT",
-      "clientSecret": "Q1gNRX29iXN7jTjjAmh-OQza",
-      "clientId": "661360902815-iki2evbvv980c91bilvgfdkagcr0r5jf.apps.googleusercontent.com",
+      "clientSecret": "REPLACEME-REPLACEME",
+      "clientId": "REPLACEME-REPLACEME.apps.googleusercontent.com",
       "useJwksUrl": "true"
     }
   }],

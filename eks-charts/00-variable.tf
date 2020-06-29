@@ -13,3 +13,7 @@ variable "eks_name" {
 variable "host_name" {
   default = "*.demo.spic.me"
 }
+
+variable "slack_url" {
+  default = "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
+}

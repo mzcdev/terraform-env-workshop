@@ -62,7 +62,7 @@ resource "helm_release" "prometheus-operator" {
 
   set {
     name  = "alertmanager.config.global.slack_api_url"
-    value = "https://hooks.slack.com/services/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"
+    value = var.slack_url
   }
 
   create_namespace = true

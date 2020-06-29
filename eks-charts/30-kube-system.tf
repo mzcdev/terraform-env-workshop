@@ -69,7 +69,7 @@ resource "helm_release" "k8s-spot-termination-handler" {
 
   set {
     name  = "slackUrl"
-    value = "https://hooks.slack.com/services/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"
+    value = var.slack_url
   }
 }
 

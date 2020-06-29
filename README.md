@@ -13,6 +13,7 @@ cd terraform-env-workshop
 ```bash
 # for ingress
 export TF_VAR_host_name="*.demo.spic.me"
+export TF_VAR_slack_url="https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
 
 # replace workshop name
 # create s3 bucket
