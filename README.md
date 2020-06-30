@@ -18,7 +18,7 @@ export TF_VAR_slack_url="https://hooks.slack.com/services/REPLACEME/REPLACEME/RE
 # replace workshop name
 # create s3 bucket
 # create dynamodb table
-./setup.sh
+./replace.sh
 ```
 
 ## usage
