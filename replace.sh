@@ -37,9 +37,17 @@ _error() {
 
 _replace() {
     if [ "${OS_NAME}" == "darwin" ]; then
-        sed -i "" -e "$1" $2
+        sed -i "" -e "$1" "$2"
     else
-        sed -i -e "$1" $2
+        sed -i -e "$1" "$2"
+    fi
+}
+
+_find_replace() {
+    if [ "${OS_NAME}" == "darwin" ]; then
+        find . -name "$2" -exec sed -i "" -e "$1" {} \;
+    else
+        find . -name "$2" -exec sed -i -e "$1" {} \;
     fi
 }
 
@@ -62,21 +70,11 @@ if [ "${TF_VAR_base_domain}" == "" ]; then
     _error "BASE_DOMAIN is empty."
 fi
 
-# replace workshop name
-# if [ "${OS_NAME}" == "darwin" ]; then
-#     find . -name '*.tf' -exec sed -i '' -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
-#     find . -name '*.yaml' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-#     find . -name '*.json' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-# else
-#     find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
-#     find . -name '*.yaml' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-#     find . -name '*.json' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-# fi
+# replace
+_find_replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" "*.tf"
 
-find . -name '*.tf' -exec _replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
-
-find . -name '*.yaml' -exec _replace "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-find . -name '*.json' -exec _replace "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+_find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.yaml"
+_find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.json"
 
 _replace "s/GOOGLE_CLIENT_ID/${TF_VAR_google_client_id}/g" ./eks-charts/template/keycloak-realm.json
 _replace "s/GOOGLE_CLIENT_SECRET/${TF_VAR_google_client_secret}/g" ./eks-charts/template/keycloak-realm.json
