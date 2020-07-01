@@ -155,7 +155,7 @@ master:
                 - "Overall/Administer"
               assignments:
                 - "admin"
-                - "jyyu@mz.co.kr"
+                - "me@nalbam.com"
             - name: "readonly"
               description: "Read-only users"
               permissions:

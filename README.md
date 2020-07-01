@@ -20,6 +20,8 @@ export TF_VAR_base_domain="" # demo.nalbam.com
 export TF_VAR_google_client_id="REPLACEME.apps.googleusercontent.com"
 export TF_VAR_google_client_secret="REPLACEME"
 
+export TF_VAR_admin_username="me@nalbam.com"
+
 # for jenkins, alertmanager
 export TF_VAR_slack_token="REPLACEME"
 

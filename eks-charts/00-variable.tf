@@ -16,7 +16,7 @@ variable "cluster_role" {
 }
 
 variable "admin_username" {
-  default = "jyyu@mz.co.kr"
+  default = "me@nalbam.com"
 }
 
 variable "admin_password" {
