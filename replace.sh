@@ -13,11 +13,19 @@ export BUCKET="terraform-workshop-${1:-${ACCOUNT_ID}}"
 echo "REGION=${REGION}"
 echo "BUCKET=${BUCKET}"
 
+export BASE_DOMAIN="${TF_VAR_base_domain:-demo.spic.me}"
+
+echo "BASE_DOMAIN=${BASE_DOMAIN}"
+
 # replace workshop name
 if [ "${OS_NAME}" == "darwin" ]; then
     find . -name '*.tf' -exec sed -i '' -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
+    find . -name '*.yaml' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+    find . -name '*.json' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
 else
     find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
+    find . -name '*.yaml' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+    find . -name '*.json' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
 fi
 
 # create s3 bucket

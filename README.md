@@ -12,8 +12,8 @@ cd terraform-env-workshop
 
 ```bash
 # for ingress
-export TF_VAR_base_domain="demo.spic.me"
-export TF_VAR_slack_token="REPLACEME"
+export TF_VAR_base_domain="demo.nalbam.com"
+export TF_VAR_slack_token="T03FUG4UB/B8RQJGNR0/gDBs4W4eq7NC9HbDlWv8qkUe"
 
 # replace workshop name
 # create s3 bucket
