@@ -59,12 +59,12 @@ _find_replace() {
 }
 
 _main() {
-    _result "ACCOUNT_ID=${ACCOUNT_ID}"
+    _result "ACCOUNT_ID = ${ACCOUNT_ID}"
 
-    _result "REGION=${REGION}"
-    _result "BUCKET=${BUCKET}"
+    _result "REGION = ${REGION}"
+    _result "BUCKET = ${BUCKET}"
 
-    _result "BASE_DOMAIN=${BASE_DOMAIN}"
+    _result "BASE_DOMAIN = ${BASE_DOMAIN}"
 
     if [ "${BASE_DOMAIN}" == "" ]; then
         _error "BASE_DOMAIN is empty."
