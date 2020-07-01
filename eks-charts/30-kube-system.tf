@@ -12,8 +12,6 @@ resource "helm_release" "cluster-autoscaler" {
     file("./values/kube-system/cluster-autoscaler.yaml")
   ]
 
-  wait = false
-
   set {
     name  = "awsRegion"
     value = var.region
@@ -21,8 +19,10 @@ resource "helm_release" "cluster-autoscaler" {
 
   set {
     name  = "autoDiscovery.clusterName"
-    value = var.eks_name
+    value = var.cluster_name
   }
+
+  wait = false
 }
 
 resource "helm_release" "efs-provisioner" {
@@ -60,17 +60,17 @@ resource "helm_release" "k8s-spot-termination-handler" {
     file("./values/kube-system/k8s-spot-termination-handler.yaml")
   ]
 
-  wait = false
-
   set {
     name  = "clusterName"
-    value = var.eks_name
+    value = var.cluster_name
   }
 
   set {
     name  = "slackUrl"
-    value = var.slack_url
+    value = local.slack_url
   }
+
+  wait = false
 }
 
 resource "helm_release" "kube2iam" {
@@ -85,12 +85,12 @@ resource "helm_release" "kube2iam" {
     file("./values/kube-system/kube2iam.yaml")
   ]
 
-  wait = false
-
   set {
     name  = "awsRegion"
     value = var.region
   }
+
+  wait = false
 }
 
 resource "helm_release" "metrics-server" {
@@ -116,9 +116,9 @@ resource "helm_release" "metrics-server" {
 #   namespace = "kube-system"
 #   name      = "kube-state-metrics"
 
-#   wait = false
-
 #   values = [
 #     file("./values/kube-system/kube-state-metrics.yaml")
 #   ]
+
+#   wait = false
 # }

@@ -81,7 +81,7 @@ variable "min" {
 
 variable "max" {
   description = "워커 노드 오토스케일링그룹 최대값"
-  default     = "5"
+  default     = "6"
 }
 
 variable "on_demand_base" {

@@ -1,13 +1,13 @@
 nameOverride: datadog
 
 datadog:
+  clusterName: # CLUSTER_NAME
+
   apiKey: DATADOG_API_KEY
   apiKeyExistingSecret: # DATADOG_API_KEY_SECRET
 
   appKey: DATADOG_APP_KEY
   appKeyExistingSecret: # DATADOG_APP_KEY_SECRET
-
-  clusterName: # CLUSTER_NAME
 
   kubeStateMetricsEnabled: false
 

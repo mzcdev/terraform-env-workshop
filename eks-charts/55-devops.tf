@@ -1,6 +1,16 @@
 # devops
 
+resource "kubernetes_namespace" "devops" {
+  count = var.cluster_role == "devops" ? 1 : 0
+
+  metadata {
+    name = "devops"
+  }
+}
+
 resource "helm_release" "chartmuseum" {
+  count = var.cluster_role == "devops" ? var.chartmuseum_enabled ? 1 : 0 : 0
+
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "chartmuseum"
   version    = var.stable_chartmuseum
@@ -14,7 +24,7 @@ resource "helm_release" "chartmuseum" {
 
   set {
     name  = "env.open.STORAGE_AMAZON_BUCKET"
-    value = "${var.eks_name}-chartmuseum-${local.account_id}"
+    value = "${var.cluster_name}-chartmuseum-${local.account_id}"
   }
 
   set {
@@ -24,14 +34,15 @@ resource "helm_release" "chartmuseum" {
 
   wait = false
 
-  create_namespace = true
-
   depends_on = [
+    kubernetes_namespace.devops,
     helm_release.efs-provisioner,
   ]
 }
 
 resource "helm_release" "docker-registry" {
+  count = var.cluster_role == "devops" ? var.registry_enabled ? 1 : 0 : 0
+
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "docker-registry"
   version    = var.stable_docker_registry
@@ -45,7 +56,7 @@ resource "helm_release" "docker-registry" {
 
   set {
     name  = "s3.bucket"
-    value = "${var.eks_name}-chartmuseum-${local.account_id}"
+    value = "${var.cluster_name}-chartmuseum-${local.account_id}"
   }
 
   set {
@@ -55,91 +66,93 @@ resource "helm_release" "docker-registry" {
 
   wait = false
 
-  create_namespace = true
-
   depends_on = [
+    kubernetes_namespace.devops,
     helm_release.efs-provisioner,
   ]
 }
 
-# resource "helm_release" "archiva" {
-#   repository = "https://xetus-oss.github.io/helm-charts/"
-#   chart      = "xetusoss-archiva"
+resource "helm_release" "archiva" {
+  count = var.cluster_role == "devops" ? var.archiva_enabled ? 1 : 0 : 0
 
-#   namespace = "devops"
-#   name      = "archiva"
+  repository = "https://xetus-oss.github.io/helm-charts/"
+  chart      = "xetusoss-archiva"
 
-#   values = [
-#     file("./values/devops/archiva.yaml")
-#   ]
+  namespace = "devops"
+  name      = "archiva"
 
-#   set {
-#     name  = "persistence.storageClass"
-#     value = local.storage_class
-#   }
+  values = [
+    file("./values/devops/archiva.yaml")
+  ]
 
-#   wait = false
+  set {
+    name  = "persistence.storageClass"
+    value = local.storage_class
+  }
 
-#   create_namespace = true
+  wait = false
 
-#   depends_on = [
-#     helm_release.efs-provisioner,
-#   ]
-# }
+  depends_on = [
+    kubernetes_namespace.devops,
+    helm_release.efs-provisioner,
+  ]
+}
 
-# resource "helm_release" "sonarqube" {
-#   repository = "https://oteemo.github.io/charts"
-#   chart      = "sonarqube"
-#   version    = var.oteemo_sonarqube
+resource "helm_release" "sonarqube" {
+  count = var.cluster_role == "devops" ? var.sonarqube_enabled ? 1 : 0 : 0
 
-#   namespace = "devops"
-#   name      = "sonarqube"
+  repository = "https://oteemo.github.io/charts"
+  chart      = "sonarqube"
+  version    = var.oteemo_sonarqube
 
-#   values = [
-#     file("./values/devops/sonarqube.yaml")
-#   ]
+  namespace = "devops"
+  name      = "sonarqube"
 
-#   set {
-#     name  = "persistence.storageClass"
-#     value = local.storage_class
-#   }
+  values = [
+    file("./values/devops/sonarqube.yaml")
+  ]
 
-#   set {
-#     name  = "postgresql.persistence.storageClass"
-#     value = local.storage_class
-#   }
+  set {
+    name  = "persistence.storageClass"
+    value = local.storage_class
+  }
 
-#   wait = false
+  set {
+    name  = "postgresql.persistence.storageClass"
+    value = local.storage_class
+  }
 
-#   create_namespace = true
+  wait = false
 
-#   depends_on = [
-#     helm_release.efs-provisioner,
-#   ]
-# }
+  depends_on = [
+    kubernetes_namespace.devops,
+    helm_release.efs-provisioner,
+  ]
+}
 
-# resource "helm_release" "sonatype-nexus" {
-#   repository = "https://oteemo.github.io/charts"
-#   chart      = "sonatype-nexus"
-#   version    = var.oteemo_sonatype_nexus
+resource "helm_release" "sonatype-nexus" {
+  count = var.cluster_role == "devops" ? var.nexus_enabled ? 1 : 0 : 0
 
-#   namespace = "devops"
-#   name      = "sonatype-nexus"
+  repository = "https://oteemo.github.io/charts"
+  chart      = "sonatype-nexus"
+  version    = var.oteemo_sonatype_nexus
 
-#   values = [
-#     file("./values/devops/sonatype-nexus.yaml")
-#   ]
+  namespace = "devops"
+  name      = "sonatype-nexus"
 
-#   set {
-#     name  = "persistence.storageClass"
-#     value = local.storage_class
-#   }
+  values = [
+    file("./values/devops/sonatype-nexus.yaml")
+  ]
 
-#   wait = false
+  set {
+    name  = "persistence.storageClass"
+    value = local.storage_class
+  }
 
-#   create_namespace = true
+  wait = false
 
-#   depends_on = [
-#     helm_release.efs-provisioner,
-#   ]
-# }
+  depends_on = [
+    kubernetes_namespace.devops,
+    helm_release.efs-provisioner,
+  ]
+}

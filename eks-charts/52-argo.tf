@@ -14,7 +14,7 @@ resource "helm_release" "argo" {
 
   set {
     name  = "artifactRepository.s3.bucket"
-    value = "${var.eks_name}-argo-${local.account_id}"
+    value = "${var.cluster_name}-argo-${local.account_id}"
   }
 
   set {

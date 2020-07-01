@@ -125,6 +125,20 @@ master:
                   }
                 }
               }
+          - script: >
+              multibranchPipelineJob('sample-tomcat') {
+                branchSources {
+                  git {
+                      id = 'sample-tomcat'
+                      remote('https://github.com/nalbam/sample-tomcat.git')
+                  }
+                }
+                orphanedItemStrategy {
+                  discardOldItems {
+                    numToKeep(15)
+                  }
+                }
+              }
 
     # https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/keycloak/README.md
     securityRealm: |-

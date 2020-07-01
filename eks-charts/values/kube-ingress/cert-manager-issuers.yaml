@@ -5,17 +5,17 @@ resources:
       name: letsencrypt-issuer
     spec:
       acme:
-        # You must replace this email address with your own.
-        # Let's Encrypt will use this to contact you about expiring
-        # certificates, and issues related to your account.
+        # Email address used for ACME registration
         email: me@nalbam.com
+        # Name of a secret used to store the ACME account private key
+        privateKeySecretRef:
+          name: letsencrypt-issuer
+        # The ACME server URL
         server: https://acme-v02.api.letsencrypt.org/directory
         # server: https://acme-staging-v02.api.letsencrypt.org/directory
-        privateKeySecretRef:
-          # Secret resource that will be used to store the account's private key.
-          name: letsencrypt-issuer
-        # Add a single challenge solver, HTTP01 using nginx
         solvers:
-          - http01:
+          # An empty 'selector' means that this solver matches all domains
+          - selector: {}
+            http01:
               ingress:
                 class: nginx

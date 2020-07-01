@@ -13,6 +13,21 @@ resource "helm_release" "grafana" {
   ]
 
   set {
+    name  = "adminUser"
+    value = var.admin_username
+  }
+
+  set {
+    name  = "adminPassword"
+    value = var.admin_password
+  }
+
+  set {
+    name  = "persistence.enabled"
+    value = true
+  }
+
+  set {
     name  = "persistence.storageClassName"
     value = local.storage_class
   }
@@ -62,7 +77,7 @@ resource "helm_release" "prometheus-operator" {
 
   set {
     name  = "alertmanager.config.global.slack_api_url"
-    value = var.slack_url
+    value = local.slack_url
   }
 
   create_namespace = true
@@ -104,22 +119,22 @@ resource "helm_release" "prometheus-alert-rules" {
 #     file("./values/monitor/datadog.yaml")
 #   ]
 
-#   wait = false
-
-#   create_namespace = true
+#   set {
+#     name  = "datadog.clusterName"
+#     value = var.cluster_name
+#   }
 
 #   set {
 #     name  = "datadog.apiKey"
-#     value = "REPLACEME"
+#     value = var.datadog_api_key
 #   }
 
 #   set {
 #     name  = "datadog.appKey"
-#     value = "REPLACEME"
+#     value = var.datadog_app_key
 #   }
 
-#   set {
-#     name  = "datadog.clusterName"
-#     value = var.eks_name
-#   }
+#   wait = false
+
+#   create_namespace = true
 # }

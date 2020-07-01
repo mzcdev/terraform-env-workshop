@@ -28,12 +28,16 @@
       "default": "3.3.1", 
       "description": "gabibbo97/keycloak-gatekeeper"
     }, 
+    "harbor_harbor": {
+      "default": "1.4.0", 
+      "description": "harbor/harbor"
+    }, 
     "jetstack_cert_manager": {
       "default": "v0.15.1", 
       "description": "jetstack/cert-manager"
     }, 
     "kiwigrid_fluentd_elasticsearch": {
-      "default": "9.3.2", 
+      "default": "9.4.0", 
       "description": "kiwigrid/fluentd-elasticsearch"
     }, 
     "oteemo_sonarqube": {
@@ -53,7 +57,7 @@
       "description": "stable/cluster-autoscaler"
     }, 
     "stable_cluster_overprovisioner": {
-      "default": "0.3.0", 
+      "default": "0.4.0", 
       "description": "stable/cluster-overprovisioner"
     }, 
     "stable_datadog": {
@@ -93,7 +97,7 @@
       "description": "stable/metrics-server"
     }, 
     "stable_nginx_ingress": {
-      "default": "1.40.1", 
+      "default": "1.40.2", 
       "description": "stable/nginx-ingress"
     }, 
     "stable_prometheus_adapter": {

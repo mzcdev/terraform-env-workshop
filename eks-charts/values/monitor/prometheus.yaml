@@ -126,7 +126,7 @@ serverFiles:
 alertmanagerFiles:
   alertmanager.yml:
     global:
-      slack_api_url: "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
+      slack_api_url: ""
 
     route:
       group_wait: 30s

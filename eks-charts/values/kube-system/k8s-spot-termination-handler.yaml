@@ -8,4 +8,4 @@ podAnnotations:
 
 detachAsg: false
 
-slackUrl: "https://hooks.slack.com/services/REPLACEME/REPLACEME/REPLACEME"
+slackUrl: ""

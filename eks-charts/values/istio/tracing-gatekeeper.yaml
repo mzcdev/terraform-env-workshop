@@ -17,6 +17,6 @@ ingress:
   hosts:
     - "tracing-istio.demo.spic.me"
   tls:
-    - secretName: tracing-tls
+    - secretName: tracing-gatekeeper-tls
       hosts:
         - "tracing-istio.demo.spic.me"

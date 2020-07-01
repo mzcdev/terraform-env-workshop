@@ -1,6 +1,7 @@
 nameOverride: grafana
 
-adminUser: "jyyu@mz.co.kr"
+adminUser: "admin"
+adminPassword: "password"
 
 # podAnnotations:
 #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
@@ -71,7 +72,7 @@ dashboards:
     # https://grafana.com/dashboards/
     kube-cluster:
       gnetId: 9797
-      revision: 9
+      revision: 13
       datasource: Prometheus
     kube-deployment:
       gnetId: 9679
@@ -86,10 +87,6 @@ dashboards:
       revision: 8
       datasource: Prometheus
 
-    k8s-cluster-summary:
-      gnetId: 8685
-      revision: 1
-      datasource: Prometheus
     node-exporter:
       gnetId: 11074
       revision: 2

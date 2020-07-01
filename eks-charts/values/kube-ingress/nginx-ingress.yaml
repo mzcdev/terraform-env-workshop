@@ -11,11 +11,11 @@ controller:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: "*.demo.spic.me"
       external-dns.alpha.kubernetes.io/ttl: "300"
-      service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
+      # service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
       service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "3600"
-      # service.beta.kubernetes.io/aws-load-balancer-security-groups: ""
+      service.beta.kubernetes.io/aws-load-balancer-security-groups: ""
       service.beta.kubernetes.io/aws-load-balancer-ssl-cert: ""
-      service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
+      # service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "https"
       # service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
   stats:
     enabled: true

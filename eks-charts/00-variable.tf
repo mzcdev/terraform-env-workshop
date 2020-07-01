@@ -5,15 +5,72 @@ variable "region" {
   default     = "ap-northeast-2"
 }
 
-variable "eks_name" {
-  description = "EKS Cluster 이름을 입력합니다."
+variable "cluster_name" {
+  description = "EKS Cluster 이름을 입력합니다. e.g: eks-demo"
   default     = "eks-demo"
 }
 
-variable "host_name" {
-  default = "*.demo.spic.me"
+variable "cluster_role" {
+  description = "EKS Cluster 롤을 입력합니다. e.g: dev, stg, prod, devops"
+  default     = "devops"
 }
 
-variable "slack_url" {
-  default = ""
+variable "admin_username" {
+  default = "jyyu@mz.co.kr"
+}
+
+variable "admin_password" {
+  default = "Kw7sM9oEE02fA6YiA55EqVpa"
+}
+
+variable "base_domain" {
+  default = "demo.spic.me"
+}
+
+variable "slack_token" {
+  default = "REPLACEME"
+}
+
+# variable "google_client_id" {
+#   default = "REPLACEME.apps.googleusercontent.com"
+# }
+
+# variable "google_client_secret" {
+#   default = "REPLACEME"
+# }
+
+# variable "datadog_api_key" {
+#   default = "REPLACEME"
+# }
+
+# variable "datadog_app_key" {
+#   default = "REPLACEME"
+# }
+
+variable "jenkins_enabled" {
+  default = true
+}
+
+variable "archiva_enabled" {
+  default = true
+}
+
+variable "chartmuseum_enabled" {
+  default = true
+}
+
+variable "registry_enabled" {
+  default = true
+}
+
+variable "harbor_enabled" {
+  default = false
+}
+
+variable "nexus_enabled" {
+  default = false
+}
+
+variable "sonarqube_enabled" {
+  default = false
 }

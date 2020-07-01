@@ -17,6 +17,6 @@ ingress:
   hosts:
     - "weave-scope.demo.spic.me"
   tls:
-    - secretName: weave-scope-tls
+    - secretName: weave-scope-gatekeeper-tls
       hosts:
         - "weave-scope.demo.spic.me"

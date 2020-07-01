@@ -32,7 +32,6 @@ resource "helm_release" "weave-scope-gatekeeper" {
   create_namespace = true
 
   depends_on = [
-    helm_release.weave-scope,
     helm_release.keycloak,
   ]
 }

@@ -14,7 +14,7 @@ resource "helm_release" "nginx-ingress" {
 
   set {
     name  = "controller.service.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
-    value = var.host_name
+    value = local.host_name
   }
 
   # set {

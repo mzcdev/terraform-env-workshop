@@ -1,6 +1,8 @@
 nameOverride: keycloak
 
 keycloak:
+  replicas: 1
+
   username: "admin"
   password: "password"
 
@@ -45,10 +47,13 @@ keycloak:
     dbUser: keycloak
     dbPassword: password
 
+# https://hub.helm.sh/charts/bitnami/postgresql
 postgresql:
   enabled: true
   postgresqlUsername: keycloak
   postgresqlPassword: password
+  replication:
+    enabled: false
   persistence:
     enabled: true
     storageClass: default

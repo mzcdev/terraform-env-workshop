@@ -17,6 +17,6 @@ ingress:
   hosts:
     - "kiali-istio.demo.spic.me"
   tls:
-    - secretName: kiali-tls
+    - secretName: kiali-gatekeeper-tls
       hosts:
         - "kiali-istio.demo.spic.me"

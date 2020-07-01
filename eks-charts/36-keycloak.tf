@@ -15,7 +15,8 @@ resource "kubernetes_secret" "keycloak-realm" {
   type = "Opaque"
 
   data = {
-    "demo.json" = file("./values/keycloak/realm/demo.json")
+    "demo.json" = file("${path.module}/template/keycloak-realm.json")
+    # "demo.json" = data.template_file.keycloak-realm.rendered
   }
 
   depends_on = [
@@ -34,6 +35,21 @@ resource "helm_release" "keycloak" {
   values = [
     file("./values/keycloak/keycloak.yaml")
   ]
+
+  set {
+    name  = "keycloak.replicas"
+    value = 2
+  }
+
+  set {
+    name  = "keycloak.username"
+    value = var.admin_username
+  }
+
+  set {
+    name  = "keycloak.password"
+    value = var.admin_password
+  }
 
   set {
     name  = "postgresql.persistence.storageClass"

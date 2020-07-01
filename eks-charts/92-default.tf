@@ -9,15 +9,31 @@ resource "helm_release" "cluster-overprovisioner" {
   name      = "cluster-overprovisioner"
 
   values = [
-    file("./values/default/cluster-overprovisioner.yaml")
+    file("./values/default/cluster-overprovisioner.yaml"),
+    yamlencode(
+      {
+        deployments = [
+          {
+            name = "default"
+            replicaCount = 0
+            resources = {
+              requests = {
+                cpu = "1000m"
+                memory = "1Gi"
+              }
+            }
+          }
+        ]
+      }
+    )
   ]
 
-  wait = false
-
   # set {
-  #   name  = "deployments.replicaCount"
-  #   value = 0
+  #   name  = "deployments.0.replicaCount"
+  #   value = 1
   # }
+
+  wait = false
 }
 
 # for jenkins
@@ -28,6 +44,7 @@ resource "kubernetes_config_map" "jenkins-env" {
   }
 
   data = {
-    "groovy" = file("./values/default/env/jenkins-env.groovy")
+    # "groovy" = file("${path.module}/template/jenkins-env.groovy")
+    "groovy" = data.template_file.jenkins-env.rendered
   }
 }

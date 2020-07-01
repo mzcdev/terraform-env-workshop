@@ -276,6 +276,7 @@
       "grafana": [],
       "jenkins": [],
       "kiali": [],
+      "sonarqube": [],
       "tracing": [],
       "weave-scope": [],
       "security-admin-console": [],
@@ -965,6 +966,51 @@
         "role_list",
         "profile",
         "roles",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "id": "8312e7b4-d18a-4b54-bf98-67d62ffce042",
+      "clientId": "sonarqube",
+      "rootUrl": "https://sonarqube.demo.spic.me/",
+      "adminUrl": "https://sonarqube.demo.spic.me/",
+      "surrogateAuthRequired": false,
+      "enabled": true,
+      "alwaysDisplayInConsole": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "5ad5e8a7-85f2-44cf-979c-dd8faf53e84c",
+      "redirectUris": [
+        "https://sonarqube.demo.spic.me/*"
+      ],
+      "webOrigins": [
+        "https://sonarqube.demo.spic.me"
+      ],
+      "notBefore": 0,
+      "bearerOnly": false,
+      "consentRequired": false,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": false,
+      "publicClient": true,
+      "frontchannelLogout": false,
+      "protocol": "openid-connect",
+      "attributes": {},
+      "authenticationFlowBindingOverrides": {},
+      "fullScopeAllowed": true,
+      "nodeReRegistrationTimeout": -1,
+      "defaultClientScopes": [
+        "web-origins",
+        "role_list",
+        "profile",
+        "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -1804,10 +1850,10 @@
     "linkOnly": false,
     "firstBrokerLoginFlowAlias": "first broker login",
     "config": {
-      "hostedDomain": "mz.co.kr",
+      "hostedDomain": "",
       "syncMode": "IMPORT",
-      "clientSecret": "REPLACEME-REPLACEME",
-      "clientId": "REPLACEME-REPLACEME.apps.googleusercontent.com",
+      "clientSecret": "REPLACEME",
+      "clientId": "REPLACEME.apps.googleusercontent.com",
       "useJwksUrl": "true"
     }
   }],

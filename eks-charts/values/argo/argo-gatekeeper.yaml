@@ -17,6 +17,6 @@ ingress:
   hosts:
     - "argo.demo.spic.me"
   tls:
-    - secretName: argo-tls
+    - secretName: argo-gatekeeper-tls
       hosts:
         - "argo.demo.spic.me"
