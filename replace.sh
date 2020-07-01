@@ -8,7 +8,7 @@ export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
 echo "ACCOUNT_ID=${ACCOUNT_ID}"
 
 export REGION="ap-northeast-2"
-export BUCKET="terraform-workshop-${ACCOUNT_ID}"
+export BUCKET="terraform-workshop-${1:-${ACCOUNT_ID}}"
 
 echo "REGION=${REGION}"
 echo "BUCKET=${BUCKET}"
