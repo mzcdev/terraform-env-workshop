@@ -15,8 +15,10 @@ cd terraform-env-workshop
 export TF_VAR_base_domain="" # demo.nalbam.com
 export TF_VAR_slack_token="REPLACEME"
 
-export TF_VAR_google_client_id="REPLACEME"
-export TF_VAR_google_client_secret="REPLACEME.apps.googleusercontent.com"
+# https://console.cloud.google.com/ : API 및 인증정보 > 사용자 인증 정보 > OAuth 2.0 클라이언트 ID
+# 승인된 리디렉션 URI : https://keycloak.demo.spic.me/auth/realms/demo/broker/google/endpoint
+export TF_VAR_google_client_id="REPLACEME.apps.googleusercontent.com"
+export TF_VAR_google_client_secret="REPLACEME"
 
 # replace workshop name
 # create s3 bucket
