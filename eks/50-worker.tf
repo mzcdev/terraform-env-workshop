@@ -1,8 +1,8 @@
 # worker
 
 module "worker" {
-  source = "github.com/mzcdev/terraform-aws-eks-worker?ref=v0.12.30"
-  # source = "../../../terraform-aws-eks-worker"
+  source = "github.com/mzcdev/terraform-aws-eks-worker?ref=v0.12.32"
+  # source = "../../terraform-aws-eks-worker"
 
   region = var.region
   name   = local.worker
@@ -41,5 +41,5 @@ module "worker" {
   key_name = var.key_name
   key_path = var.key_path
 
-  tags = []
+  tags = {}
 }

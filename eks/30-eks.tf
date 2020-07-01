@@ -1,7 +1,7 @@
 # eks
 
 module "eks" {
-  source = "github.com/mzcdev/terraform-aws-eks?ref=v0.12.48"
+  source = "github.com/mzcdev/terraform-aws-eks?ref=v0.12.50"
   # source = "../../../terraform-aws-eks"
 
   region = var.region
@@ -21,4 +21,6 @@ module "eks" {
 
   map_roles = local.map_roles
   map_users = local.map_users
+
+  tags = {}
 }
