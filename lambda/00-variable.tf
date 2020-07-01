@@ -45,7 +45,7 @@ variable "timeout" {
 variable "s3_bucket" {
   description = "배포 패키지가 저장될 버켓 이름."
   type        = string
-  default     = "terraform-workshop-mzcdev"
+  default     = "terraform-workshop-147748575754"
 }
 
 variable "s3_source" {

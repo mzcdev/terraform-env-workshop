@@ -1,11 +1,11 @@
-# remote
+# backend
 
 terraform {
   backend "s3" {
     region         = "ap-northeast-2"
-    bucket         = "terraform-workshop-seoul"
+    bucket         = "terraform-workshop-147748575754"
     key            = "eks-demo-charts.tfstate"
-    dynamodb_table = "terraform-workshop-seoul"
+    dynamodb_table = "terraform-workshop-147748575754"
     encrypt        = true
   }
   required_version = ">= 0.12"
@@ -24,7 +24,7 @@ data "terraform_remote_state" "eks" {
   backend = "s3"
   config = {
     region = "ap-northeast-2"
-    bucket = "terraform-workshop-seoul"
+    bucket = "terraform-workshop-147748575754"
     key    = "eks-demo.tfstate"
   }
 }
