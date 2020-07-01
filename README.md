@@ -20,7 +20,7 @@ export TF_VAR_slack_token="REPLACEME"
 export TF_VAR_google_client_id="REPLACEME.apps.googleusercontent.com"
 export TF_VAR_google_client_secret="REPLACEME"
 
-# replace workshop name
+# replace
 # create s3 bucket
 # create dynamodb table
 ./replace.sh
