@@ -2,7 +2,14 @@
 
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 
-command -v fzf > /dev/null && FZF=true
+# variable
+export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
+
+export REGION="ap-northeast-2"
+export BUCKET="terraform-workshop-${1:-${ACCOUNT_ID}}"
+
+export BASE_DOMAIN="${TF_VAR_base_domain}"
+
 command -v tput > /dev/null && TPUT=true
 
 _echo() {
@@ -51,49 +58,47 @@ _find_replace() {
     fi
 }
 
-# variable
-export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
+_main() {
+    _result "ACCOUNT_ID=${ACCOUNT_ID}"
 
-echo "ACCOUNT_ID=${ACCOUNT_ID}"
+    _result "REGION=${REGION}"
+    _result "BUCKET=${BUCKET}"
 
-export REGION="ap-northeast-2"
-export BUCKET="terraform-workshop-${1:-${ACCOUNT_ID}}"
+    _result "BASE_DOMAIN=${BASE_DOMAIN}"
 
-echo "REGION=${REGION}"
-echo "BUCKET=${BUCKET}"
+    if [ "${BASE_DOMAIN}" == "" ]; then
+        _error "BASE_DOMAIN is empty."
+    fi
 
-export BASE_DOMAIN="${TF_VAR_base_domain:-demo.spic.me}"
+    # replace
+    _find_replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" "*.tf"
 
-echo "BASE_DOMAIN=${BASE_DOMAIN}"
+    _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.yaml"
+    _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.json"
 
-if [ "${TF_VAR_base_domain}" == "" ]; then
-    _error "BASE_DOMAIN is empty."
-fi
+    _find_replace "s/GOOGLE_CLIENT_ID/${TF_VAR_google_client_id}/g" "*.json"
+    _find_replace "s/GOOGLE_CLIENT_SECRET/${TF_VAR_google_client_secret}/g" "*.json"
 
-# replace
-_find_replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" "*.tf"
+    # create s3 bucket
+    COUNT=$(aws s3 ls | grep ${BUCKET} | wc -l | xargs)
+    if [ "x${COUNT}" == "x0" ]; then
+        _command "aws s3 mb s3://${BUCKET}"
+        aws s3 mb s3://${BUCKET} --region ${REGION}
+    fi
 
-_find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.yaml"
-_find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.json"
+    # create dynamodb table
+    COUNT=$(aws dynamodb list-tables | jq -r .TableNames | grep ${BUCKET} | wc -l | xargs)
+    if [ "x${COUNT}" == "x0" ]; then
+        _command "aws dynamodb create-table --table-name ${BUCKET}"
+        aws dynamodb create-table \
+            --table-name ${BUCKET} \
+            --attribute-definitions AttributeName=LockID,AttributeType=S \
+            --key-schema AttributeName=LockID,KeyType=HASH \
+            --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+            --region ${REGION} | jq .
+    fi
+}
 
-_replace "s/GOOGLE_CLIENT_ID/${TF_VAR_google_client_id}/g" ./eks-charts/template/keycloak-realm.json
-_replace "s/GOOGLE_CLIENT_SECRET/${TF_VAR_google_client_secret}/g" ./eks-charts/template/keycloak-realm.json
+_main
 
-# create s3 bucket
-COUNT=$(aws s3 ls | grep ${BUCKET} | wc -l | xargs)
-if [ "x${COUNT}" == "x0" ]; then
-    echo "$ aws s3 mb s3://${BUCKET} --region ${REGION}"
-    aws s3 mb s3://${BUCKET} --region ${REGION}
-fi
-
-# create dynamodb table
-COUNT=$(aws dynamodb list-tables | jq -r .TableNames | grep ${BUCKET} | wc -l | xargs)
-if [ "x${COUNT}" == "x0" ]; then
-    echo "$ aws dynamodb create-table --table-name ${BUCKET}"
-    aws dynamodb create-table \
-        --table-name ${BUCKET} \
-        --attribute-definitions AttributeName=LockID,AttributeType=S \
-        --key-schema AttributeName=LockID,KeyType=HASH \
-        --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
-        --region ${REGION} | jq .
-fi
+_success
