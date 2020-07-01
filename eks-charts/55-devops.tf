@@ -77,6 +77,7 @@ resource "helm_release" "archiva" {
 
   repository = "https://xetus-oss.github.io/helm-charts/"
   chart      = "xetusoss-archiva"
+  version    = "0.1.8"
 
   namespace = "devops"
   name      = "archiva"

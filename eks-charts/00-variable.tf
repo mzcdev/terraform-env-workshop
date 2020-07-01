@@ -51,10 +51,6 @@ variable "jenkins_enabled" {
   default = true
 }
 
-variable "archiva_enabled" {
-  default = true
-}
-
 variable "chartmuseum_enabled" {
   default = true
 }
@@ -64,6 +60,10 @@ variable "registry_enabled" {
 }
 
 variable "harbor_enabled" {
+  default = false
+}
+
+variable "archiva_enabled" {
   default = false
 }
 

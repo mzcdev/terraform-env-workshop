@@ -732,6 +732,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -791,6 +792,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -849,6 +851,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -907,6 +910,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -966,6 +970,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -1070,6 +1075,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [
@@ -1129,6 +1135,7 @@
         "role_list",
         "profile",
         "roles",
+        "groups",
         "email"
       ],
       "optionalClientScopes": [

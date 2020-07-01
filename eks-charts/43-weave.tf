@@ -1,5 +1,9 @@
 # weave-scope
 
+variable "weave_scope_gatekeeper" {
+  default = true
+}
+
 resource "helm_release" "weave-scope" {
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart      = "weave-scope"
@@ -12,10 +16,17 @@ resource "helm_release" "weave-scope" {
     file("./values/weave/weave-scope.yaml")
   ]
 
+  set {
+    name  = "weave-scope-frontend.ingress.enabled"
+    value = var.weave_scope_gatekeeper ? false : true
+  }
+
   create_namespace = true
 }
 
 resource "helm_release" "weave-scope-gatekeeper" {
+  count = var.weave_scope_gatekeeper ? 1 : 0
+
   repository = "https://gabibbo97.github.io/charts/"
   chart      = "keycloak-gatekeeper"
   version    = var.gabibbo97_keycloak_gatekeeper

@@ -1,5 +1,9 @@
 # argo & argo-events
 
+variable "argo_gatekeeper" {
+  default = true
+}
+
 resource "helm_release" "argo" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo"
@@ -11,6 +15,11 @@ resource "helm_release" "argo" {
   values = [
     file("./values/argo/argo.yaml")
   ]
+
+  set {
+    name  = "server.ingress.enabled"
+    value = var.argo_gatekeeper ? false : true
+  }
 
   set {
     name  = "artifactRepository.s3.bucket"
@@ -47,6 +56,8 @@ resource "helm_release" "argo" {
 # }
 
 resource "helm_release" "argo-gatekeeper" {
+  count = var.argo_gatekeeper ? 1 : 0
+
   repository = "https://gabibbo97.github.io/charts/"
   chart      = "keycloak-gatekeeper"
   version    = var.gabibbo97_keycloak_gatekeeper

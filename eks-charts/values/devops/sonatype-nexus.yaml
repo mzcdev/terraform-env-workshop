@@ -1,9 +1,12 @@
 fullnameOverride: sonatype-nexus
 
 statefulset:
-  enabled: true
+  enabled: false
 
 nexus:
+  service:
+    type: ClusterIP
+
   resources:
     requests:
       cpu: 1000m
@@ -26,23 +29,6 @@ nexus:
     failureThreshold: 12
     path: /
 
-persistence:
-  enabled: true
-  storageClass: default
-  storageSize: 50Gi
-
-nexusProxy:
-  env:
-    nexusHttpHost: "nexus.demo.spic.me"
-
-nexusBackup:
-  enabled: false
-  nexusAdminPassword: "password"
-  persistence:
-    enabled: false
-    storageClass: default
-    storageSize: 20Gi
-
 ingress:
   enabled: true
   annotations:
@@ -55,3 +41,19 @@ ingress:
   tls:
     enabled: true
     secretName: sonatype-nexus-tls
+
+nexusProxy:
+  env:
+    nexusHttpHost: "nexus.demo.spic.me"
+
+nexusBackup:
+  enabled: false
+  persistence:
+    enabled: false
+    storageClass: default
+    storageSize: 20Gi
+
+persistence:
+  enabled: true
+  storageClass: default
+  storageSize: 50Gi
