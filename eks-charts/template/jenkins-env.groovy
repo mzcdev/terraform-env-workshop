@@ -11,13 +11,13 @@ def slack_token = "${slack_token}"
 @Field
 def jenkins = "${jenkins}"
 @Field
-def harbor = "${harbor}"
-@Field
-def archiva = "${archiva}"
-@Field
 def chartmuseum = "${chartmuseum}"
 @Field
 def registry = "${registry}"
+@Field
+def harbor = "${harbor}"
+@Field
+def archiva = "${archiva}"
 @Field
 def nexus = "${nexus}"
 @Field

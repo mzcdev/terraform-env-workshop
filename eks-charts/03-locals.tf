@@ -17,10 +17,10 @@ locals {
 locals {
   domain = {
     jenkins     = var.jenkins_enabled ? "jenkins.${var.base_domain}" : ""
-    archiva     = var.archiva_enabled ? "archiva.${var.base_domain}" : ""
     chartmuseum = var.chartmuseum_enabled ? "chartmuseum.${var.base_domain}" : ""
     registry    = var.registry_enabled ? "registry.${var.base_domain}" : ""
     harbor      = var.harbor_enabled ? "harbor-core.${var.base_domain}" : ""
+    archiva     = var.archiva_enabled ? "archiva.${var.base_domain}" : ""
     nexus       = var.nexus_enabled ? "nexus.${var.base_domain}" : ""
     sonarqube   = var.sonarqube_enabled ? "sonarqube.${var.base_domain}" : ""
   }
