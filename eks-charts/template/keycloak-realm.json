@@ -1852,8 +1852,8 @@
     "config": {
       "hostedDomain": "",
       "syncMode": "IMPORT",
-      "clientSecret": "REPLACEME",
-      "clientId": "REPLACEME.apps.googleusercontent.com",
+      "clientSecret": "GOOGLE_CLIENT_SECRET",
+      "clientId": "GOOGLE_CLIENT_ID",
       "useJwksUrl": "true"
     }
   }],

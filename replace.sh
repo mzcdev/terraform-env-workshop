@@ -2,6 +2,47 @@
 
 OS_NAME="$(uname | awk '{print tolower($0)}')"
 
+command -v fzf > /dev/null && FZF=true
+command -v tput > /dev/null && TPUT=true
+
+_echo() {
+    if [ "${TPUT}" != "" ] && [ "$2" != "" ]; then
+        echo -e "$(tput setaf $2)$1$(tput sgr0)"
+    else
+        echo -e "$1"
+    fi
+}
+
+_result() {
+    echo
+    _echo "# $@" 4
+}
+
+_command() {
+    echo
+    _echo "$ $@" 3
+}
+
+_success() {
+    echo
+    _echo "+ $@" 2
+    exit 0
+}
+
+_error() {
+    echo
+    _echo "- $@" 1
+    exit 1
+}
+
+_replace() {
+    if [ "${OS_NAME}" == "darwin" ]; then
+        sed -i "" -e "$1" $2
+    else
+        sed -i -e "$1" $2
+    fi
+}
+
 # variable
 export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
 
@@ -17,16 +58,28 @@ export BASE_DOMAIN="${TF_VAR_base_domain:-demo.spic.me}"
 
 echo "BASE_DOMAIN=${BASE_DOMAIN}"
 
-# replace workshop name
-if [ "${OS_NAME}" == "darwin" ]; then
-    find . -name '*.tf' -exec sed -i '' -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
-    find . -name '*.yaml' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-    find . -name '*.json' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-else
-    find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
-    find . -name '*.yaml' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
-    find . -name '*.json' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+if [ "${TF_VAR_base_domain}" == "" ]; then
+    _error "BASE_DOMAIN is empty."
 fi
+
+# replace workshop name
+# if [ "${OS_NAME}" == "darwin" ]; then
+#     find . -name '*.tf' -exec sed -i '' -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
+#     find . -name '*.yaml' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+#     find . -name '*.json' -exec sed -i '' -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+# else
+#     find . -name '*.tf' -exec sed -i -e "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
+#     find . -name '*.yaml' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+#     find . -name '*.json' -exec sed -i -e "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+# fi
+
+find . -name '*.tf' -exec _replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" {} \;
+
+find . -name '*.yaml' -exec _replace "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+find . -name '*.json' -exec _replace "s/demo.spic.me/${BASE_DOMAIN}/g" {} \;
+
+_replace "s/GOOGLE_CLIENT_ID/${TF_VAR_google_client_id}/g" ./eks-charts/template/keycloak-realm.json
+_replace "s/GOOGLE_CLIENT_SECRET/${TF_VAR_google_client_secret}/g" ./eks-charts/template/keycloak-realm.json
 
 # create s3 bucket
 COUNT=$(aws s3 ls | grep ${BUCKET} | wc -l | xargs)
