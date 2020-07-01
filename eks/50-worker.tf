@@ -1,7 +1,7 @@
 # worker
 
 module "worker" {
-  source = "github.com/mzcdev/terraform-aws-eks-worker?ref=v0.12.32"
+  source = "github.com/mzcdev/terraform-aws-eks-worker?ref=v0.12.33"
   # source = "../../terraform-aws-eks-worker"
 
   region = var.region
