@@ -28,7 +28,7 @@ variable "base_domain" {
 }
 
 variable "slack_token" {
-  default = "REPLACEME"
+  default = "SLACK_TOKEN"
 }
 
 # variable "google_client_id" {
