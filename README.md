@@ -20,11 +20,11 @@ export ADMIN_USERNAME="me@nalbam.com"
 # for keycloak
 # https://console.cloud.google.com/ : API 및 인증정보 > 사용자 인증 정보 > OAuth 2.0 클라이언트 ID
 # 승인된 리디렉션 URI : https://keycloak.${BASE_DOMAIN}/auth/realms/demo/broker/google/endpoint
-export GOOGLE_CLIENT_ID="REPLACEME.apps.googleusercontent.com"
-export GOOGLE_CLIENT_SECRET="REPLACEME"
+export GOOGLE_CLIENT_ID="GOOGLE_CLIENT_ID"
+export GOOGLE_CLIENT_SECRET="GOOGLE_CLIENT_SECRET"
 
 # for jenkins, alertmanager
-export SLACK_TOKEN="REPLACEME"
+export SLACK_TOKEN="SLACK_TOKEN"
 
 # replace
 # create s3 bucket
