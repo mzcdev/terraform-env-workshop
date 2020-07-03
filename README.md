@@ -12,7 +12,7 @@ cd terraform-env-workshop
 
 ```bash
 # for ingress
-export BASE_DOMAIN="demo.nalbam.com" # demo.nalbam.com
+export BASE_DOMAIN="" # demo.nalbam.com
 
 # for keycloak, jenkins, grafana, argo-cd
 export ADMIN_USERNAME="me@nalbam.com"

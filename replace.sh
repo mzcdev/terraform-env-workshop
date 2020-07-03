@@ -79,7 +79,7 @@ _main() {
     _find_replace "s/GOOGLE_CLIENT_ID/${GOOGLE_CLIENT_ID}/g" "*.json"
     _find_replace "s/GOOGLE_CLIENT_SECRET/${GOOGLE_CLIENT_SECRET}/g" "*.json"
 
-    _find_replace "s/SLACK_TOKEN/${SLACK_TOKEN}/g" "*.tf"
+    _find_replace "s|SLACK_TOKEN|${SLACK_TOKEN}|g" "*.tf"
 
     # create s3 bucket
     COUNT=$(aws s3 ls | grep ${BUCKET} | wc -l | xargs)
