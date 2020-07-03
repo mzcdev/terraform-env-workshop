@@ -12,18 +12,19 @@ cd terraform-env-workshop
 
 ```bash
 # for ingress
-export TF_VAR_base_domain="" # demo.nalbam.com
+export BASE_DOMAIN="demo.nalbam.com" # demo.nalbam.com
+
+# for keycloak, jenkins, grafana, argo-cd
+export ADMIN_USERNAME="me@nalbam.com"
 
 # for keycloak
 # https://console.cloud.google.com/ : API 및 인증정보 > 사용자 인증 정보 > OAuth 2.0 클라이언트 ID
-# 승인된 리디렉션 URI : https://keycloak.demo.spic.me/auth/realms/demo/broker/google/endpoint
-export TF_VAR_google_client_id="REPLACEME.apps.googleusercontent.com"
-export TF_VAR_google_client_secret="REPLACEME"
-
-export TF_VAR_admin_username="me@nalbam.com"
+# 승인된 리디렉션 URI : https://keycloak.${BASE_DOMAIN}/auth/realms/demo/broker/google/endpoint
+export GOOGLE_CLIENT_ID="REPLACEME.apps.googleusercontent.com"
+export GOOGLE_CLIENT_SECRET="REPLACEME"
 
 # for jenkins, alertmanager
-export TF_VAR_slack_token="REPLACEME"
+export SLACK_TOKEN="REPLACEME"
 
 # replace
 # create s3 bucket

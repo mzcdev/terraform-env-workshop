@@ -8,8 +8,6 @@ export ACCOUNT_ID=$(aws sts get-caller-identity | jq .Account -r)
 export REGION="ap-northeast-2"
 export BUCKET="terraform-workshop-${1:-${ACCOUNT_ID}}"
 
-export BASE_DOMAIN="${TF_VAR_base_domain}"
-
 command -v tput > /dev/null && TPUT=true
 
 _echo() {
@@ -76,8 +74,12 @@ _main() {
     _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.yaml"
     _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.json"
 
-    _find_replace "s/GOOGLE_CLIENT_ID/${TF_VAR_google_client_id}/g" "*.json"
-    _find_replace "s/GOOGLE_CLIENT_SECRET/${TF_VAR_google_client_secret}/g" "*.json"
+    _find_replace "s/me@nalbam.com/${ADMIN_USERNAME}/g" "*.tf"
+
+    _find_replace "s/GOOGLE_CLIENT_ID/${GOOGLE_CLIENT_ID}/g" "*.json"
+    _find_replace "s/GOOGLE_CLIENT_SECRET/${GOOGLE_CLIENT_SECRET}/g" "*.json"
+
+    _find_replace "s/SLACK_TOKEN/${SLACK_TOKEN}/g" "*.tf"
 
     # create s3 bucket
     COUNT=$(aws s3 ls | grep ${BUCKET} | wc -l | xargs)
