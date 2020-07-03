@@ -8,6 +8,12 @@ git clone https://github.com/mzcdev/terraform-env-workshop
 cd terraform-env-workshop
 ```
 
+## aws credentials
+
+```bash
+aws configure
+```
+
 ## setup
 
 ```bash
