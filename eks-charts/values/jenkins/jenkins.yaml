@@ -19,6 +19,8 @@ master:
 
   javaOpts: "-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Seoul"
 
+  jenkinsUrl: "https://jenkins.demo.spic.me"
+
   # customConfigMap: true
   # overwriteConfig: true
   # overwriteJobs: true

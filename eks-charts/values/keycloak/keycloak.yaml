@@ -6,6 +6,9 @@ keycloak:
   username: "admin"
   password: "password"
 
+  cli:
+    enabled: false
+
   ingress:
     enabled: true
     annotations:
@@ -20,8 +23,8 @@ keycloak:
         hosts:
           - "keycloak.demo.spic.me"
 
-  podAnnotations:
-    cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
+  # podAnnotations:
+  #   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
 
   extraEnv: |
     - name: PROXY_ADDRESS_FORWARDING

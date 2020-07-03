@@ -5,7 +5,10 @@ locals {
 }
 
 locals {
-  host_name = "*.${var.base_domain}"
+  acm_arn  = element(concat(data.terraform_remote_state.eks.outputs.acm_arn, [""]), 0)
+  acm_host = data.terraform_remote_state.eks.outputs.acm_host
+
+  host_name = local.acm_arn != "" ? local.acm_host : "*.${var.base_domain}"
 
   efs_id = element(concat(data.terraform_remote_state.eks.outputs.efs_ids, [""]), 0)
 

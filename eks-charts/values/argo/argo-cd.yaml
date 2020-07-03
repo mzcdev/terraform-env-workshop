@@ -2,11 +2,6 @@ nameOverride: argocd
 
 installCRDs: true
 
-# global:
-#   image:
-#     repository: argoproj/argocd
-#     tag: v1.5.8
-
 controller:
   metrics:
     enabled: true

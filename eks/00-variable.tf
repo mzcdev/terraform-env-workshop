@@ -117,10 +117,10 @@ variable "launch_efs_enable" {
   default     = true
 }
 
-# variable "host_root" {
-#   default = "spic.me"
-# }
+variable "host_root" {
+  default = "demo.spic.me"
+}
 
-# variable "host_name" {
-#   default = "*.demo.spic.me"
-# }
+variable "host_name" {
+  default = "*.demo.spic.me"
+}

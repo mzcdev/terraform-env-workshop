@@ -11,8 +11,8 @@ resources:
         privateKeySecretRef:
           name: letsencrypt-issuer
         # The ACME server URL
-        server: https://acme-v02.api.letsencrypt.org/directory
-        # server: https://acme-staging-v02.api.letsencrypt.org/directory
+        # server: https://acme-v02.api.letsencrypt.org/directory
+        server: https://acme-staging-v02.api.letsencrypt.org/directory
         solvers:
           # An empty 'selector' means that this solver matches all domains
           - selector: {}

@@ -17,10 +17,10 @@ resource "helm_release" "nginx-ingress" {
     value = local.host_name
   }
 
-  # set {
-  #   name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-ssl-cert"
-  #   value = local.acm_arn
-  # }
+  set {
+    name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/aws-load-balancer-ssl-cert"
+    value = local.acm_arn
+  }
 
   wait = false
 
@@ -49,6 +49,8 @@ resource "helm_release" "external-dns" {
 }
 
 resource "helm_release" "cert-manager" {
+  count = local.acm_arn == "" ? 1 : 0
+
   repository = "https://charts.jetstack.io"
   chart      = "cert-manager"
   version    = var.jetstack_cert_manager
@@ -68,6 +70,8 @@ resource "helm_release" "cert-manager" {
 }
 
 resource "helm_release" "cert-manager-issuers" {
+  count = local.acm_arn == "" ? 1 : 0
+
   repository = "https://kubernetes-charts-incubator.storage.googleapis.com"
   chart      = "raw"
 
