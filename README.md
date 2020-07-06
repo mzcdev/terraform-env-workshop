@@ -23,6 +23,7 @@ export BASE_DOMAIN="" # demo.nalbam.com
 
 # for keycloak, jenkins, grafana, argo-cd
 export ADMIN_USERNAME="me@nalbam.com"
+export ADMIN_PASSWORD="Kw7sM9oEE02fA6YiA55EqVpa"
 
 # for keycloak
 # https://console.cloud.google.com/ : API 및 인증정보 > 사용자 인증 정보 > OAuth 2.0 클라이언트 ID

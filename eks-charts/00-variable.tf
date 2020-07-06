@@ -16,11 +16,11 @@ variable "cluster_role" {
 }
 
 variable "admin_username" {
-  default = "me@nalbam.com"
+  default = "ADMIN_USERNAME"
 }
 
 variable "admin_password" {
-  default = "Kw7sM9oEE02fA6YiA55EqVpa"
+  default = "ADMIN_PASSWORD"
 }
 
 variable "root_domain" {

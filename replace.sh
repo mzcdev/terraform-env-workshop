@@ -78,7 +78,8 @@ _main() {
 
     _find_replace "s/mzdev.be/${ROOT_DOMAIN}/g" "*.tf"
 
-    _find_replace "s/me@nalbam.com/${ADMIN_USERNAME}/g" "*.tf"
+    _find_replace "s/ADMIN_USERNAME/${ADMIN_USERNAME}/g" "*.tf"
+    _find_replace "s/ADMIN_PASSWORD/${ADMIN_PASSWORD}/g" "*.tf"
 
     _find_replace "s/GOOGLE_CLIENT_ID/${GOOGLE_CLIENT_ID}/g" "*.json"
     _find_replace "s/GOOGLE_CLIENT_SECRET/${GOOGLE_CLIENT_SECRET}/g" "*.json"
