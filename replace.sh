@@ -71,6 +71,7 @@ _main() {
     # replace
     _find_replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" "*.tf"
 
+    _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.tf"
     _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.yaml"
     _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.json"
 
