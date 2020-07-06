@@ -18,6 +18,7 @@ aws configure
 
 ```bash
 # for ingress
+export ROOT_DOMAIN="" # nalbam.com
 export BASE_DOMAIN="" # demo.nalbam.com
 
 # for keycloak, jenkins, grafana, argo-cd

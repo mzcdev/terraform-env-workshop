@@ -62,6 +62,7 @@ _main() {
     _result "REGION = ${REGION}"
     _result "BUCKET = ${BUCKET}"
 
+    _result "ROOT_DOMAIN = ${ROOT_DOMAIN}"
     _result "BASE_DOMAIN = ${BASE_DOMAIN}"
 
     if [ "${BASE_DOMAIN}" == "" ]; then
@@ -71,9 +72,11 @@ _main() {
     # replace
     _find_replace "s/terraform-workshop-[[:alnum:]]*/${BUCKET}/g" "*.tf"
 
-    _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.tf"
-    _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.yaml"
-    _find_replace "s/demo.spic.me/${BASE_DOMAIN}/g" "*.json"
+    _find_replace "s/demo.mzdev.be/${BASE_DOMAIN}/g" "*.tf"
+    _find_replace "s/demo.mzdev.be/${BASE_DOMAIN}/g" "*.yaml"
+    _find_replace "s/demo.mzdev.be/${BASE_DOMAIN}/g" "*.json"
+
+    _find_replace "s/mzdev.be/${ROOT_DOMAIN}/g" "*.tf"
 
     _find_replace "s/me@nalbam.com/${ADMIN_USERNAME}/g" "*.tf"
 
