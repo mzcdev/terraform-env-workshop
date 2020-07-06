@@ -2,7 +2,7 @@ nameOverride: archiva
 
 proxy:
   enabled: true
-  hostname: "archiva.demo.spic.me"
+  hostname: "archiva.demo.mzdev.be"
   proto: https
   pathPrefix: /
 

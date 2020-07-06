@@ -4,5 +4,15 @@ args:
   - --kubelet-insecure-tls
   - --kubelet-preferred-address-types=InternalIP
 
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#         - matchExpressions:
+#             - key: node.kubernetes.io/role
+#               operator: In
+#               values:
+#                 - ops
+
 podAnnotations:
   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"

@@ -4,6 +4,16 @@ sources:
   - service
 #  - ingress
 
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#         - matchExpressions:
+#             - key: node.kubernetes.io/role
+#               operator: In
+#               values:
+#                 - ops
+
 podAnnotations:
   iam.amazonaws.com/role: "eks-demo-worker-route53"
 

@@ -30,7 +30,7 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - name: "chartmuseum.demo.spic.me"
+    - name: "chartmuseum.demo.mzdev.be"
       path: /
       tls: true
       tlsSecret: chartmuseum-tls

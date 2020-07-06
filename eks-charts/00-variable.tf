@@ -23,8 +23,12 @@ variable "admin_password" {
   default = "Kw7sM9oEE02fA6YiA55EqVpa"
 }
 
+variable "root_domain" {
+  default = "mzdev.be"
+}
+
 variable "base_domain" {
-  default = "demo.spic.me"
+  default = "demo.mzdev.be"
 }
 
 variable "slack_token" {

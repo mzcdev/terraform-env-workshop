@@ -117,10 +117,10 @@ variable "launch_efs_enable" {
   default     = true
 }
 
-variable "host_root" {
-  default = "demo.spic.me"
+variable "root_domain" {
+  default = "mzdev.be"
 }
 
-variable "host_name" {
-  default = "*.demo.spic.me"
+variable "base_domain" {
+  default = "demo.mzdev.be"
 }

@@ -1,6 +1,6 @@
 nameOverride: tracing-gatekeeper
 
-discoveryURL: https://keycloak.demo.spic.me/auth/realms/demo
+discoveryURL: https://keycloak.demo.mzdev.be/auth/realms/demo
 
 upstreamURL: http://tracing.istio-system.svc.cluster.local:80
 
@@ -15,8 +15,8 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - "tracing-istio.demo.spic.me"
+    - "tracing-istio.demo.mzdev.be"
   tls:
     - secretName: tracing-gatekeeper-tls
       hosts:
-        - "tracing-istio.demo.spic.me"
+        - "tracing-istio.demo.mzdev.be"

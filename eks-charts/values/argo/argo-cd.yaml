@@ -33,14 +33,14 @@ server:
       nginx.ingress.kubernetes.io/ssl-redirect: "true"
       nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
     hosts:
-      - "argocd.demo.spic.me"
+      - "argocd.demo.mzdev.be"
     tls:
       - secretName: argocd-server-tls
         hosts:
-          - "argocd.demo.spic.me"
+          - "argocd.demo.mzdev.be"
 
   config:
-    url: "https://argocd.demo.spic.me"
+    url: "https://argocd.demo.mzdev.be"
 
     repositories: |
       - name: env-demo
@@ -57,7 +57,7 @@ server:
       name: SSO
       clientID: 'argo-cd'
       clientSecret: 'd91fdbbc-5dbb-43ab-b388-ce4170ff79c6'
-      issuer: 'https://keycloak.demo.spic.me/auth/realms/demo'
+      issuer: 'https://keycloak.demo.mzdev.be/auth/realms/demo'
       requestedScopes:
         - openid
         - email

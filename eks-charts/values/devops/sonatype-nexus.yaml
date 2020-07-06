@@ -44,7 +44,7 @@ ingress:
 
 nexusProxy:
   env:
-    nexusHttpHost: "nexus.demo.spic.me"
+    nexusHttpHost: "nexus.demo.mzdev.be"
 
 nexusBackup:
   enabled: false

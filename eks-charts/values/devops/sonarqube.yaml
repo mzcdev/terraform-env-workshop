@@ -10,12 +10,12 @@ ingress:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   hosts:
-    - name: "sonarqube.demo.spic.me"
+    - name: "sonarqube.demo.mzdev.be"
       path: /
   tls:
     - secretName: sonarqube-tls
       hosts:
-        - "sonarqube.demo.spic.me"
+        - "sonarqube.demo.mzdev.be"
 
 annotations:
   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
@@ -25,10 +25,10 @@ plugins:
     - "https://github.com/vaulttec/sonar-auth-oidc/releases/download/v2.0.0/sonar-auth-oidc-plugin-2.0.0.jar"
 
 sonarProperties:
-  sonar.core.serverBaseURL: "https://sonarqube.demo.spic.me"
+  sonar.core.serverBaseURL: "https://sonarqube.demo.mzdev.be"
   # sonar.forceAuthentication: true
   sonar.auth.oidc.enabled: true
-  sonar.auth.oidc.issuerUri: "https://keycloak.demo.spic.me/auth/realms/demo"
+  sonar.auth.oidc.issuerUri: "https://keycloak.demo.mzdev.be/auth/realms/demo"
   sonar.auth.oidc.clientId.secured: "sonarqube"
   sonar.auth.oidc.clientSecret.secured: "5ad5e8a7-85f2-44cf-979c-dd8faf53e84c"
   # sonar.auth.oidc.scopes: "openid email profile"

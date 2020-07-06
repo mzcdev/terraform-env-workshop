@@ -14,6 +14,16 @@ extraArgs:
   skip-nodes-with-local-storage: false
   skip-nodes-with-system-pods: false
 
+# affinity:
+#   nodeAffinity:
+#     requiredDuringSchedulingIgnoredDuringExecution:
+#       nodeSelectorTerms:
+#         - matchExpressions:
+#             - key: node.kubernetes.io/role
+#               operator: In
+#               values:
+#                 - ops
+
 podAnnotations:
   cluster-autoscaler.kubernetes.io/safe-to-evict: "false"
   iam.amazonaws.com/role: "eks-demo-worker-asg"
