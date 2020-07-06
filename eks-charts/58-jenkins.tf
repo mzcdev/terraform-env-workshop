@@ -43,6 +43,8 @@ resource "helm_release" "jenkins" {
     kubernetes_namespace.jenkins,
     helm_release.efs-provisioner,
     helm_release.prometheus-operator,
+    helm_release.chartmuseum,
+    helm_release.docker-registry,
   ]
 }
 
