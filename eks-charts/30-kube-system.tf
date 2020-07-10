@@ -107,18 +107,3 @@ resource "helm_release" "metrics-server" {
 
   wait = false
 }
-
-# resource "helm_release" "kube-state-metrics" {
-#   repository = "https://kubernetes-charts.storage.googleapis.com"
-#   chart      = "kube-state-metrics"
-#   version    = var.stable_kube_state_metrics
-
-#   namespace = "kube-system"
-#   name      = "kube-state-metrics"
-
-#   values = [
-#     file("./values/kube-system/kube-state-metrics.yaml")
-#   ]
-
-#   wait = false
-# }
